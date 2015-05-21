@@ -1,0 +1,10 @@
+{
+	"build_systems":
+	[
+		{
+			"name": "nw",
+			"cmd": ["${project_path:${folder}}/node_modules/.bin/nw", "."],
+			"working_dir": "${project_path:${folder}}"
+		}
+	]
+}
