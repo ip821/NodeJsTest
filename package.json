@@ -1,0 +1,26 @@
+{
+  "name": "NodejsConsoleApp1",
+  "version": "0.0.0",
+  "description": "NodejsConsoleApp1",
+  "main": "index.html",
+  "author": {
+    "name": "ip",
+    "email": ""
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.4",
+    "jquery": "^2.1.4",
+    "nw": "^0.12.1",
+    "winreg": "0.0.12"
+  },
+  "window": {
+    "show": false,
+    "position": "center",
+    "width": 500,
+    "height": 500,
+    "toolbar": false
+  },
+  "scripts": {
+    "start": "nodewebkit"
+  }
+}
