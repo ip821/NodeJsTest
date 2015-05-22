@@ -13,45 +13,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"> 
+    <script src="app.js"></script>
+
     <title>Menu Demo</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            height: 100%;
-        }
-
-        #left, #area-3 {
-            float: left;
-            height: 100%;
-            width: 50%;
-        }
-
-        #area-1 {
-            height: 50%;
-            background-color: #CC3333;
-        }
-
-        #area-2 {
-            height: 50%;
-            background-color: #FF9933;
-        }
-
-        #area-3 {
-            background-color: #0099FF;
-        }
-    </style>
 </head>
 <body>
-    <div id="left">
-        <div id="area-1"></div>
-        <div id="area-2"></div>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Brand</a>
     </div>
-    <div id="area-3"></div>
-    <script src="app.js"></script>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+        </ul>
+    </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="#">Link</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+    </ul>
+</li>
+</ul>
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
 </body>
 </html>
