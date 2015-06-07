@@ -7,5 +7,31 @@ var bootstrap = require("bootstrap");
 gui.Window.get().show();
 gui.Window.get().showDevTools();
 
-var selector = $("#left");
-selector.prop("value", 123);
+var strUrl = 'http://oauth.vk.com/authorize?client_id=4225742&scope=8&redirect_uri=http://oauth.vk.com/blank.html&display=wap&response_type=token';
+window.intervalId = window.setInterval("window.hashUpdate()", 500);
+
+window.loginWindow = window.open(strUrl, "Login", false);
+
+window.hashUpdate = function() {
+  if(window.loginWindow.closed){
+    window.clearInterval(intervalId);
+//    start(); //just a callback that I'm using to start another part of my application (after I caught the token)
+  }
+  else {
+    var strUrl = window.loginWindow.document.URL;
+    if(strUrl.indexOf('#') > -1){
+    	var strParams = strUrl.split('#')[1];
+    	if(strParams.indexOf('&') > -1){
+    		var params = strParams.split('&');
+		    console.log(params);
+
+    		var accessToken = params.filter(function(item){
+    		 	var keyValue = item.split('=');
+    		 	if(keyValue[0] === 'access_token'){
+    		 		console.log("accessToken: " + keyValue[1]);
+    		 	}
+    		});
+    	}
+	}
+  }
+}

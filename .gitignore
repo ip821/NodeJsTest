@@ -1,0 +1,83 @@
+node_modules/nw/package.json
+node_modules/nw/nwjs/credits.html
+node_modules/nw/nwjs/nwjc
+node_modules/nw/nwjs/nwjs.app/Contents/Info.plist
+node_modules/nw/nwjs/nwjs.app/Contents/PkgInfo
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/crash_inspector
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/nwjs Framework
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Libraries/ffmpegsumo.so
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/AHEM____.TTF
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/am.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/ar.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/bg.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/bn.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/ca.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/ChromiumAATTest.ttf
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/cs.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/da.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/de.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/el.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/en-GB.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/en-US.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/es-419.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/es.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/et.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/fa.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/fi.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/fil.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/fr.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/gu.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/hi.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/hr.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/hu.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/icudtl.dat
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/id.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/it.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/iw.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/ja.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/kn.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/ko.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/lt.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/lv.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/missingImage.png
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/ml.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/mr.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/ms.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/nl.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/no.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/nw.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/pl.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/pt-BR.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/pt-PT.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/ro.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/ru.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/sk.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/sl.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/sr.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/sv.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/sw.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/ta.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/te.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/textAreaResizeCorner.png
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/th.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/tr.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/uk.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/vi.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/zh-CN.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/zh-TW.pak
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Framework.framework/Resources/English.lproj/HttpAuth.nib
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Helper EH.app/Contents/Info.plist
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Helper EH.app/Contents/PkgInfo
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Helper EH.app/Contents/MacOS/nwjs Helper EH
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Helper NP.app/Contents/Info.plist
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Helper NP.app/Contents/PkgInfo
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Helper NP.app/Contents/MacOS/nwjs Helper NP
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Helper.app/Contents/Info.plist
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Helper.app/Contents/PkgInfo
+node_modules/nw/nwjs/nwjs.app/Contents/Frameworks/nwjs Helper.app/Contents/MacOS/nwjs Helper
+node_modules/nw/nwjs/nwjs.app/Contents/MacOS/nwjs
+node_modules/nw/nwjs/nwjs.app/Contents/Resources/AHEM____.TTF
+node_modules/nw/nwjs/nwjs.app/Contents/Resources/ChromiumAATTest.ttf
+node_modules/nw/nwjs/nwjs.app/Contents/Resources/missingImage.png
+node_modules/nw/nwjs/nwjs.app/Contents/Resources/nw.icns
+node_modules/nw/nwjs/nwjs.app/Contents/Resources/textAreaResizeCorner.png
