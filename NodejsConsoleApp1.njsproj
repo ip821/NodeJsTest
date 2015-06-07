@@ -5,8 +5,10 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>NodejsConsoleApp1</Name>
     <RootNamespace>NodejsConsoleApp1</RootNamespace>
-    <NodeExeArguments>.</NodeExeArguments>
-    <NodeExePath>C:\!\NodejsConsoleApp1\node_modules\.bin\nw.cmd</NodeExePath>
+    <NodeExeArguments>
+    </NodeExeArguments>
+    <NodeExePath>
+    </NodeExePath>
     <ScriptArguments>.</ScriptArguments>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
