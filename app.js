@@ -28,7 +28,10 @@ window.hashUpdate = function() {
     		var accessToken = params.filter(function(item){
     		 	var keyValue = item.split('=');
     		 	if(keyValue[0] === 'access_token'){
-    		 		console.log("accessToken: " + keyValue[1]);
+    		 		var accessToken = keyValue[1];
+    		 		console.log("accessToken: " + accessToken);
+    		 		window.loginWindow.close();
+    		 		$('body').html('Vk access token: ' + accessToken);
     		 	}
     		});
     	}
