@@ -8,10 +8,9 @@ gui.Window.get().show();
 gui.Window.get().showDevTools();
 
 var strUrl = 'http://oauth.vk.com/authorize?client_id=4225742&scope=8&redirect_uri=http://oauth.vk.com/blank.html&display=wap&response_type=token';
+//gui.Window.get().cookies.remove();
 window.intervalId = window.setInterval("window.hashUpdate()", 500);
-
 window.loginWindow = window.open(strUrl, "Login", false);
-
 window.hashUpdate = function() {
   if(window.loginWindow.closed){
     window.clearInterval(intervalId);
