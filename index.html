@@ -1,53 +1,26 @@
-﻿<!--<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8"/>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>-->
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
+
 <head>
-<link href="node_modules/bootstrap/dist/css/bootstrap.css">
-    <title>Menu Demo</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            height: 100%;
-        }
-
-        #left, #area-3 {
-            float: left;
-            height: 100%;
-            width: 50%;
-        }
-
-        #area-1 {
-            height: 50%;
-            background-color: #CC3333;
-        }
-
-        #area-2 {
-            height: 50%;
-            background-color: #FF9933;
-        }
-
-        #area-3 {
-            background-color: #0099FF;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Vk audio sync</title>
 </head>
+
 <body>
-Test window
     <script src="app.js"></script>
+    <button id="syncButton" class="btn btn-primary">Sync</button>
+    <br>
+    <table class="table table-condensed">
+    	<thead>
+    		<tr>
+    			<th>Artist</th>
+    			<th>Title</th>
+    		</tr>
+    	</thead>
+    	<tbody id="tableBody"></tbody>
+    </table>
 </body>
+
 </html>

@@ -41,12 +41,10 @@ else {
             if(keyValue[0] === 'user_id'){
                userId = keyValue[1];
                console.log("userId: " + userId);
-               $('body').append('Vk user id: ' + userId);
            }
            if(keyValue[0] === 'access_token'){
                accessToken = keyValue[1];
                console.log("accessToken: " + accessToken);
-               $('body').append('Vk access token: ' + accessToken);
            }
        });
           window.loginWindow.close();
@@ -68,10 +66,11 @@ function start(){
         console.log("Success!");
         console.log(e);
 
-        $('body').append('<br>');
         e.response.forEach(function(item){
-            $('body').append(item.artist + '-' + item.title);
-            $('body').append('<br>');
+            $('#tableBody').append('<tr class="success audioRow">' +
+            '<td>' + item.artist + '</td>' +
+            '<td>' + item.title + '</td>' +
+            '</tr>');
         });
     })
     .error(function(e){
