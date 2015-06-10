@@ -23,7 +23,7 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 2326,
+				"buffer_size": 2673,
 				"line_ending": "Windows"
 			}
 		}
@@ -36,9 +36,29 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "npm",
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"key",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"prett",
+				"HTMLPrettify"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"istall",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"npm",
 				"npm: Install Package"
@@ -50,10 +70,6 @@
 			[
 				"lint ",
 				"JSLint"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"indent",
@@ -108,10 +124,6 @@
 				"Github: Repository"
 			],
 			[
-				"insta",
-				"Package Control: Install Package"
-			],
-			[
 				"c#",
 				"Set Syntax: C#"
 			],
@@ -120,7 +132,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 416.0
+		"width": 400.0
 	},
 	"console":
 	{
@@ -145,6 +157,8 @@
 	],
 	"file_history":
 	[
+		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/policy/viewPolicy.js",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Views/Policies/ViewPolicy.cshtml",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/claims/reportClaim.js",
@@ -158,7 +172,6 @@
 		"/C/!/NodejsConsoleApp1/app.js",
 		"/C/!/NodejsConsoleApp1/package.json",
 		"/C/!/NodejsConsoleApp1/stringUtils.js",
-		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
 		"/C/!/NodejsConsoleApp1/nw.sublime-build",
 		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/nw.sublime-build",
@@ -212,15 +225,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2326,
+						"buffer_size": 2673,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2218,
-								2218
+								1985,
+								1985
 							]
 						],
 						"settings":
@@ -230,7 +243,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 720.0,
+						"translation.y": 540.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

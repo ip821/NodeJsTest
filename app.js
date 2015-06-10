@@ -1,8 +1,8 @@
 ﻿// init jquery and env
- $ = require("jquery");
- global.jQuery = $;
- global.document = window.document;
- XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+$ = require("jquery");
+global.jQuery = $;
+global.document = window.document;
+XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 $.support.cors = true;
 $.ajaxSettings.xhr = function() {
@@ -10,72 +10,73 @@ $.ajaxSettings.xhr = function() {
 };
 //
 
- var gui = require('nw.gui');
- var bootstrap = require("bootstrap");
+var strUrlApi = 'https://api.vk.com/method/';
 
- gui.Window.get().show();
- gui.Window.get().showDevTools();
+var gui = require('nw.gui');
+var bootstrap = require("bootstrap");
 
- var accessToken = undefined;
- var userId = undefined;
+gui.Window.get().show();
+gui.Window.get().showDevTools();
 
- var strUrl = 'http://oauth.vk.com/authorize?client_id=4225742&scope=8&redirect_uri=http://oauth.vk.com/blank.html&display=wap&response_type=token';
+var accessToken = undefined;
+var userId = undefined;
+
+var strUrl = 'http://oauth.vk.com/authorize?client_id=4225742&scope=8&redirect_uri=http://oauth.vk.com/blank.html&display=wap&response_type=token';
 //gui.Window.get().cookies.remove();
 window.intervalId = window.setInterval("window.hashUpdate()", 500);
 window.loginWindow = window.open(strUrl, "Login", false);
 window.hashUpdate = function() {
-  if(window.loginWindow.closed){
-    window.clearInterval(intervalId);
-    start();
-}
-else {
-    var strUrl = window.loginWindow.document.URL;
-    if(strUrl.indexOf('#') > -1){
-    	var strParams = strUrl.split('#')[1];
-    	if(strParams.indexOf('&') > -1){
-    		var params = strParams.split('&');
-          console.log(params);
+    if (window.loginWindow.closed) {
+        window.clearInterval(intervalId);
+        start();
+    } else {
+        var strUrl = window.loginWindow.document.URL;
+        if (strUrl.indexOf('#') > -1) {
+            var strParams = strUrl.split('#')[1];
+            if (strParams.indexOf('&') > -1) {
+                var params = strParams.split('&');
+                console.log(params);
 
-          params.forEach(function(item){
-            var keyValue = item.split('=');
-            if(keyValue[0] === 'user_id'){
-               userId = keyValue[1];
-               console.log("userId: " + userId);
-               $('body').append('Vk user id: ' + userId);
-           }
-           if(keyValue[0] === 'access_token'){
-               accessToken = keyValue[1];
-               console.log("accessToken: " + accessToken);
-               $('body').append('Vk access token: ' + accessToken);
-           }
-       });
-          window.loginWindow.close();
-      }
-  }
-}
+                params.forEach(function(item) {
+                    var keyValue = item.split('=');
+                    if (keyValue[0] === 'user_id') {
+                        userId = keyValue[1];
+                        console.log("userId: " + userId);
+                        $('body').append('Vk user id: ' + userId);
+                    }
+                    if (keyValue[0] === 'access_token') {
+                        accessToken = keyValue[1];
+                        console.log("accessToken: " + accessToken);
+                        $('body').append('Vk access token: ' + accessToken);
+                    }
+                });
+                window.loginWindow.close();
+            }
+        }
+    }
 }
 
-function start(){
-    var strUrl = 'https://api.vk.com/method/audio.get?uid=' + userId + '&access_token=' + accessToken;
+function start() {
+    var strUrl = strUrlApi + 'audio.get?' + $.param({uid: userId, access_token: accessToken})//uid=' + userId + '&access_token=' + accessToken;
     console.log("Request:");
     console.log(strUrl);
     $.ajax({
-        type: 'GET',
-        url: strUrl,
-        data: {}
-    })
-    .success(function(e){
-        console.log("Success!");
-        console.log(e);
+            type: 'GET',
+            url: strUrl,
+            data: {}
+        })
+        .success(function(e) {
+            console.log("Success!");
+            console.log(e);
 
-        $('body').append('<br>');
-        e.response.forEach(function(item){
-            $('body').append(item.artist + '-' + item.title);
             $('body').append('<br>');
+            e.response.forEach(function(item) {
+                $('body').append(item.artist + '-' + item.title);
+                $('body').append('<br>');
+            });
+        })
+        .error(function(e) {
+            console.log("Error!");
+            console.log(e);
         });
-    })
-    .error(function(e){
-        console.log("Error!");
-        console.log(e);
-    });
 }
