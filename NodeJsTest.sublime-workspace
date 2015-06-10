@@ -3,10 +3,30 @@
 	{
 		"selected_items":
 		[
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"user",
+				"userId"
+			],
+			[
+				"Valid",
+				"ValidationContext"
+			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "app.js",
+			"settings":
+			{
+				"buffer_size": 2326,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -15,84 +35,99 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 127.0,
-		"last_filter": "javascrip",
+		"height": 392.0,
+		"last_filter": "npm",
 		"selected_items":
 		[
 			[
-				"javascrip",
-				"Set Syntax: JavaScript"
+				"npm",
+				"npm: Install Package"
 			],
 			[
-				"javascript",
-				"Set Syntax: JavaScript Next"
+				"remove",
+				"Package Control: Remove Package"
 			],
 			[
-				"json",
-				"Set Syntax: JSON (Javascript Next)"
-			],
-			[
-				"syntax ja",
-				"Set Syntax: JSON (Javascript Next)"
-			],
-			[
-				"syntax",
-				"Set Syntax: JSON"
+				"lint ",
+				"JSLint"
 			],
 			[
 				"install",
 				"Package Control: Install Package"
 			],
 			[
-				"insta",
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"syntax ra",
+				"Set Syntax: Razor"
+			],
+			[
+				"packa",
 				"Package Control: Install Package"
-			],
-			[
-				"setting",
-				"Preferences: Settings - Default"
-			],
-			[
-				"settings",
-				"Preferences: Settings - User"
-			],
-			[
-				"syntax js",
-				"Set Syntax: JSON"
-			],
-			[
-				"finder",
-				"Finder: Open here"
-			],
-			[
-				"nw",
-				"Build With: nw"
-			],
-			[
-				"git",
-				"Git: Status"
-			],
-			[
-				"build",
-				"Build: New Build System"
 			],
 			[
 				"package",
 				"Package Control: List Packages"
 			],
 			[
+				"nim",
+				"npm: List Installed Packages"
+			],
+			[
+				"omnis",
+				"OmniSharpSublime: Build"
+			],
+			[
+				"keys",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"format",
+				"Format: Javascript"
+			],
+			[
+				"npm update",
+				"npm: Update Local Packages"
+			],
+			[
+				"npm ",
+				"npm: Install Package"
+			],
+			[
 				"github",
 				"Github: Repository"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"c#",
+				"Set Syntax: C#"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
 			]
 		],
-		"width": 467.0
+		"width": 416.0
 	},
 	"console":
 	{
-		"height": 126.0,
+		"height": 386.0,
 		"history":
 		[
-			"view.run_command(\"show_scope_name\")",
-			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
 		]
 	},
 	"distraction_free":
@@ -104,23 +139,40 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/C/_dev/NodeJsTest"
+	],
 	"file_history":
 	[
-		"/Users/igorpalkin/Documents/NodeJsTest/sublime-project",
-		"/Users/igorpalkin/Documents/NodeJsTest/sublime-workspace",
-		"/Users/igorpalkin/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
-		"/Users/igorpalkin/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/igorpalkin/Library/Application Support/Sublime Text 3/Packages/User/nw.sublime-build",
-		"/Users/igorpalkin/Documents/NodeJsTest/nw.sublime-build",
-		"/Users/igorpalkin/Library/Application Support/Sublime Text 3/Packages/User/Github Tools.sublime-settings"
+		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/policy/viewPolicy.js",
+		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Views/Policies/ViewPolicy.cshtml",
+		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/claims/reportClaim.js",
+		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/policy/controllers/actorsController.js",
+		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/policy/dialogs/radioButtonDialog.js",
+		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Controllers/ActorsController.cs",
+		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Global.asax.cs",
+		"/C/_dev/NodeJsTest/app.js",
+		"/C/!/NodejsConsoleApp1/index.html",
+		"/C/!/NodejsConsoleApp1/site.css",
+		"/C/!/NodejsConsoleApp1/app.js",
+		"/C/!/NodejsConsoleApp1/package.json",
+		"/C/!/NodejsConsoleApp1/stringUtils.js",
+		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/!/NodejsConsoleApp1/nw.sublime-build",
+		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/nw.sublime-build",
+		"/C/_dev/Vamos/Sources/Server/CustomerHost/bin/Debug - Denmark.Popermo/CustomerHost.exe.config",
+		"/C/_dev/Vamos/Sources/Server/CustomerHost/bin/Debug - Denmark.Trygd/CustomerHost.exe.config",
+		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings"
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 90.0,
 		"where_history":
 		[
 		]
@@ -130,6 +182,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"reinde",
+			"{",
+			"section"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -137,6 +192,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"{"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -147,8 +203,39 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2326,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2218,
+								2218
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -183,11 +270,19 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 295.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
 	},
-	"pinned_build_system": "",
+	"output.textarea":
+	{
+		"height": 279.0
+	},
+	"pinned_build_system": "Packages/User/nw.sublime-build",
 	"project": "NodeJsTest.sublime-project",
 	"replace":
 	{
@@ -200,6 +295,30 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"Scripts\\claims\\reportClaim.js"
+			],
+			[
+				"viewpoli",
+				"Views\\Policies\\ViewPolicy.cshtml"
+			],
+			[
+				"viewpl",
+				"policy\\viewPolicy.js"
+			],
+			[
+				"radiob",
+				"Scripts\\policy\\dialogs\\radioButtonDialog.js"
+			],
+			[
+				"actors",
+				"Scripts\\policy\\controllers\\actorsController.js"
+			],
+			[
+				"actorscon",
+				"Controllers\\ActorsController.cs"
+			]
 		],
 		"width": 0.0
 	},
@@ -226,10 +345,10 @@
 	{
 	},
 	"show_minimap": true,
-	"show_open_files": false,
+	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 228.0,
+	"side_bar_width": 298.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
