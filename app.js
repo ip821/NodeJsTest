@@ -11,6 +11,7 @@ var fs = require('fs');
 var path = require('path');
 var pathExtra = require('path-extra');
 var appProxy = require('./appProxy');
+var stringUtils = require('./stringUtils');
 
 gui.Window.get().show();
 gui.Window.get().showDevTools();
@@ -74,11 +75,12 @@ $(document).ready(function() {
 
                 audioList = e.response;
                 e.response.forEach(function(item) {
-                    $('#tableBody').append('<tr class="success audioRow">' +
+                    $('#tableBody').append(stringUtils.format('<tr class="audioRow" id="{0}">', item.aid) +
                         '<td>' + item.artist + '</td>' +
                         '<td>' + item.title + '</td>' +
                         '</tr>');
                 });
+                $('#syncBadge').html(audioList.length);
             })
             .error(function(e) {
                 console.log("Error!");
@@ -91,14 +93,31 @@ $(document).ready(function() {
         var stop = false;
 
         function downloadHandler(err) {
+            if (audioList.length == index - 1)
+                stop = true;
             if ((err && err.message) || stop) {
-                if(err )
-                  console.log(err.message);
+                if (err) {
+                    $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).removeClass('success');
+                    $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).removeClass('warning');
+                    $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).addClass('error');
+                    console.log(err.message);
+                }
                 $('#stopButton').addClass('hidden');
                 $('#syncButton').removeClass('hidden');
+                $('#progressContainer').addClass('hidden');
+                $('#audioName').addClass('hidden');
                 return;
             }
+            $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).removeClass('error');
+            $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).removeClass('warning');
+            $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).addClass('success');
+            var percentValue = parseInt((index / audioList.length) * 100) + '%';
+            $('#progress').html(percentValue);
+            $('#progress').attr('aria-valuenow', index);
+            $('#progress').css('width', percentValue);
+            $('#audioName').html(stringUtils.format('{0}-{1}.mp3', audioList[index].artist, audioList[index].title));
             index++;
+            $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).addClass('warning');
             startDownload(audioList[index], downloadHandler);
         };
 
@@ -108,6 +127,9 @@ $(document).ready(function() {
             stop = true;
         });
 
+        $('#audioName').removeClass('hidden');
+        $('#progressContainer').removeClass('hidden');
+        $('#progress').attr('aria-valuemax', audioList.length);
         startDownload(audioList[index], downloadHandler);
     });
 
@@ -118,24 +140,40 @@ $(document).ready(function() {
 
     function download(url, dest, callback) {
         console.log('Downloading START: ' + url);
-        var file = fs.createWriteStream(dest);
-        var request = http.get(appProxy.makeHttpRequest(url), function(response) {
-            response.on('data', function(data) {
-                    file.write(data);
-                })
-                .on('end', function() {
-                    file.end();
-                    file.close(callback);
-                    console.log('Downloading DONE: ' + url);
-                })
-                .on('error', function(err) {
-                    console.log('Downloading FAIL: ' + url);
-                    file.close(function() {
-                        fs.unlink(dest);
-                        if (callback)
-                            callback(err);
+        var headerRequestOptions = appProxy.makeHttpRequest(url);
+        headerRequestOptions.method = 'HEAD';
+        var headerRequest = http.get(headerRequestOptions, function(headersResponse) {
+
+            if (headersResponse.headers && fs.existsSync(dest)) {
+                var streamSize = parseInt(headersResponse.headers['content-length']);
+                var stats = fs.statSync(dest);
+                var fileSize = parseInt(stats["size"]);
+                console.log(stringUtils.format('Stream size: {0}, File size: {1}', streamSize, fileSize));
+                if (streamSize == fileSize) {
+                    console.log('Skipping ' + dest);
+                    callback();
+                }
+            }
+
+            var file = fs.createWriteStream(dest);
+            var request = http.get(appProxy.makeHttpRequest(url), function(response) {
+                response.on('data', function(data) {
+                        file.write(data);
+                    })
+                    .on('end', function() {
+                        file.end();
+                        file.close(callback);
+                        console.log('Downloading DONE: ' + url);
+                    })
+                    .on('error', function(err) {
+                        console.log('Downloading FAIL: ' + url);
+                        file.close(function() {
+                            fs.unlink(dest);
+                            if (callback)
+                                callback(err);
+                        });
                     });
-                });
+            });
         });
     }
 
@@ -146,6 +184,7 @@ $(document).ready(function() {
             fs.mkdirSync(strMusicPath);
 
         var strFileName = item.artist + "-" + item.title + '.mp3';
+        strFileName = strFileName.replace('/', '');
         var strFilePath = path.join(strMusicPath, strFileName);
         download(item.url, strFilePath, onFinishedCallback);
     }
