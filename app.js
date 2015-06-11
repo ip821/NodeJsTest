@@ -1,16 +1,8 @@
-﻿// init jquery and env
-$ = require("jquery");
-global.jQuery = $;
-global.document = window.document;
-XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+﻿var strUrlApi = 'https://api.vk.com/method/';
 
-$.support.cors = true;
-$.ajaxSettings.xhr = function() {
-    return new XMLHttpRequest();
-};
-//
-
-var strUrlApi = 'https://api.vk.com/method/';
+var appInit = require('./appInit');
+appInit.initJQuery(this);
+appInit.initXMLHttpRequest(this);
 
 var gui = require('nw.gui');
 var bootstrap = require("bootstrap");
@@ -18,9 +10,12 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 var pathExtra = require('path-extra');
+var appProxy = require('./appProxy');
 
 gui.Window.get().show();
 gui.Window.get().showDevTools();
+
+appProxy.init(gui.App);
 
 var accessToken = undefined;
 var userId = undefined;
@@ -111,11 +106,7 @@ $(document).ready(function() {
     function download(url, dest, callback) {
         console.log('Downloading START: ' + url);
         var file = fs.createWriteStream(dest);
-        var request = http.get({
-            host: 'proxy.invensus.local',
-            port: 3128,
-            path: url
-        }, function(response) {
+        var request = http.get(appProxy.makeHttpRequest(url), function(response) {
             response.on('data', function(data) {
                     file.write(data);
                 })

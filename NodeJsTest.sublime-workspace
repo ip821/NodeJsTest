@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"strUr",
+				"strUrlApi"
+			],
+			[
 				"audio",
 				"audioList"
 			],
@@ -36,10 +40,34 @@
 	"buffers":
 	[
 		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 435,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "appInit.js",
+			"settings":
+			{
+				"buffer_size": 494,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 4889,
+				"buffer_size": 4722,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "appProxy.js",
+			"settings":
+			{
+				"buffer_size": 382,
 				"line_ending": "Windows"
 			}
 		},
@@ -59,10 +87,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "npm",
+		"height": 380.0,
+		"last_filter": "git di",
 		"selected_items":
 		[
+			[
+				"git di",
+				"Git: Diff Current File"
+			],
 			[
 				"npm",
 				"npm: Install Package"
@@ -185,10 +217,12 @@
 	},
 	"expanded_folders":
 	[
-		"/C/_dev/NodeJsTest"
+		"/C/_dev/NodeJsTest",
+		"/C/_dev/NodeJsTest/node_modules/path-extra"
 	],
 	"file_history":
 	[
+		"/C/_dev/NodeJsTest/app.js",
 		"/C/_dev/NodeJsTest/node_modules/xmlhttprequest/lib/XMLHttpRequest.js",
 		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
@@ -199,7 +233,6 @@
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/policy/dialogs/radioButtonDialog.js",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Controllers/ActorsController.cs",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Global.asax.cs",
-		"/C/_dev/NodeJsTest/app.js",
 		"/C/!/NodejsConsoleApp1/index.html",
 		"/C/!/NodejsConsoleApp1/site.css",
 		"/C/!/NodejsConsoleApp1/app.js",
@@ -228,6 +261,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"setuopp",
 			"startDownload",
 			"reinde",
 			"{",
@@ -250,24 +284,82 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app.js",
+					"file": "package.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4889,
+						"buffer_size": 435,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3175,
-								3175
+								260,
+								260
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "appInit.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 494,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								208,
+								208
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4722,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								442,
+								442
 							]
 						],
 						"settings":
@@ -276,15 +368,44 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "appProxy.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 382,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								83,
+								83
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
 						"translation.x": 0.0,
-						"translation.y": 1266.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 4,
 					"file": "index.html",
 					"semi_transient": false,
 					"settings":
@@ -310,7 +431,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]

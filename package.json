@@ -10,8 +10,7 @@
   "dependencies": {
     "bootstrap": "^3.3.4",
     "jquery": "^2.1.4",
-    "nw": "^0.12.1",
-    "winreg": "0.0.12"
+    "nw": "^0.12.1"
   },
   "window": {
     "show": false,
