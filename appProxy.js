@@ -7,7 +7,8 @@ function init(app){
 function makeHttpRequest(url) {
 
     var strProxy = this.app.getProxyForURL(url);
-    if(!strProxy)
+    console.log('Proxy info:' + strProxy);
+    if(strProxy === 'DIRECT')
     	return url;
 
     var strProxy = strProxy.replace('PROXY ', '');

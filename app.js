@@ -88,14 +88,27 @@ $(document).ready(function() {
 
     $('#syncButton').click(function() {
         var index = 0;
-        startDownload(audioList[index], function(err) {
-            if (err && err.message) {
-                console.log(err.message);
+        var stop = false;
+
+        function downloadHandler(err) {
+            if ((err && err.message) || stop) {
+                if(err )
+                  console.log(err.message);
+                $('#stopButton').addClass('hidden');
+                $('#syncButton').removeClass('hidden');
                 return;
             }
             index++;
-            startDownload(audioList[index]);
+            startDownload(audioList[index], downloadHandler);
+        };
+
+        $('#stopButton').removeClass('hidden');
+        $('#syncButton').addClass('hidden');
+        $('#stopButton').click(function() {
+            stop = true;
         });
+
+        startDownload(audioList[index], downloadHandler);
     });
 
     function getMusicFolder() {
