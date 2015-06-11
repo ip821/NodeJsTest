@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"audio",
+				"audioList"
+			],
+			[
+				"start",
+				"startDownload"
+			],
+			[
+				"path",
+				"pathExtra"
+			],
+			[
+				"strFie",
+				"strFilePath"
+			],
+			[
 				"for",
 				"forEach"
 			],
@@ -23,7 +39,15 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 2673,
+				"buffer_size": 4889,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 644,
 				"line_ending": "Windows"
 			}
 		}
@@ -36,9 +60,29 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "",
+		"last_filter": "npm",
 		"selected_items":
 		[
+			[
+				"npm",
+				"npm: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"git",
+				"Git: Pull"
+			],
 			[
 				"key",
 				"Preferences: Key Bindings - User"
@@ -60,14 +104,6 @@
 				"Package Control: Install Package"
 			],
 			[
-				"npm",
-				"npm: Install Package"
-			],
-			[
-				"remove",
-				"Package Control: Remove Package"
-			],
-			[
 				"lint ",
 				"JSLint"
 			],
@@ -82,10 +118,6 @@
 			[
 				"packa",
 				"Package Control: Install Package"
-			],
-			[
-				"package",
-				"Package Control: List Packages"
 			],
 			[
 				"nim",
@@ -132,7 +164,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 400.0
+		"width": 416.0
 	},
 	"console":
 	{
@@ -157,6 +189,7 @@
 	],
 	"file_history":
 	[
+		"/C/_dev/NodeJsTest/node_modules/xmlhttprequest/lib/XMLHttpRequest.js",
 		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/policy/viewPolicy.js",
@@ -195,6 +228,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"startDownload",
 			"reinde",
 			"{",
 			"section"
@@ -225,15 +259,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2673,
+						"buffer_size": 4889,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1985,
-								1985
+								3175,
+								3175
 							]
 						],
 						"settings":
@@ -243,10 +277,40 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1266.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 644,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								422,
+								422
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -290,6 +354,10 @@
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 100.0
 	},
 	"output.textarea":
 	{
