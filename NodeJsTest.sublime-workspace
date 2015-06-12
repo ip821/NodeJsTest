@@ -4,28 +4,40 @@
 		"selected_items":
 		[
 			[
-				"strUr",
-				"strUrlApi"
+				"data",
+				"dataLegth"
+			],
+			[
+				"strFile",
+				"strFileName"
 			],
 			[
 				"audio",
-				"audioList"
-			],
-			[
-				"start",
-				"startDownload"
-			],
-			[
-				"path",
-				"pathExtra"
-			],
-			[
-				"strFie",
-				"strFilePath"
+				"audioName"
 			],
 			[
 				"for",
-				"forEach"
+				"format"
+			],
+			[
+				"fiel",
+				"fileSize"
+			],
+			[
+				"file",
+				"fileSize"
+			],
+			[
+				"pars",
+				"parsedUrl"
+			],
+			[
+				"pa",
+				"parsedUrl"
+			],
+			[
+				"download",
+				"downloadHandler"
 			],
 			[
 				"user",
@@ -40,26 +52,26 @@
 	"buffers":
 	[
 		{
-			"file": "package.json",
+			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 435,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "appInit.js",
-			"settings":
-			{
-				"buffer_size": 494,
+				"buffer_size": 8538,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app.js",
+			"file": "stringUtils.js",
 			"settings":
 			{
-				"buffer_size": 4722,
+				"buffer_size": 285,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 1345,
 				"line_ending": "Windows"
 			}
 		},
@@ -67,16 +79,16 @@
 			"file": "appProxy.js",
 			"settings":
 			{
-				"buffer_size": 382,
+				"buffer_size": 667,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "index.html",
+			"file": "index.css",
 			"settings":
 			{
-				"buffer_size": 644,
-				"line_ending": "Windows"
+				"buffer_size": 0,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -87,13 +99,61 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 380.0,
-		"last_filter": "git di",
+		"height": 107.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
-				"git di",
-				"Git: Diff Current File"
+				"push",
+				"Git: Push"
+			],
+			[
+				"commit",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"pull",
+				"Git: Pull"
+			],
+			[
+				"comm",
+				"Git: Commit"
+			],
+			[
+				"stat",
+				"Git: Status"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"git comm",
+				"Git: Commit"
+			],
+			[
+				"status",
+				"Git: Status"
+			],
+			[
+				"git",
+				"Git: Add..."
+			],
+			[
+				"git g",
+				"Git: Gui"
+			],
+			[
+				"git ",
+				"Git: Pull"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
 			],
 			[
 				"npm",
@@ -102,38 +162,6 @@
 			[
 				"remove",
 				"Package Control: Remove Package"
-			],
-			[
-				"package",
-				"Package Control: Remove Package"
-			],
-			[
-				"push",
-				"Git: Push"
-			],
-			[
-				"git",
-				"Git: Pull"
-			],
-			[
-				"key",
-				"Preferences: Key Bindings - User"
-			],
-			[
-				"prett",
-				"HTMLPrettify"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
-			],
-			[
-				"istall",
-				"Package Control: Install Package"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"lint ",
@@ -150,6 +178,10 @@
 			[
 				"packa",
 				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
 			],
 			[
 				"nim",
@@ -188,6 +220,10 @@
 				"Github: Repository"
 			],
 			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
 				"c#",
 				"Set Syntax: C#"
 			],
@@ -196,7 +232,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 416.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -217,15 +253,11 @@
 	},
 	"expanded_folders":
 	[
-		"/C/_dev/NodeJsTest",
-		"/C/_dev/NodeJsTest/node_modules/path-extra"
+		"/Users/igorpalkin/Documents/NodeJsTest"
 	],
 	"file_history":
 	[
-		"/C/_dev/NodeJsTest/app.js",
-		"/C/_dev/NodeJsTest/node_modules/xmlhttprequest/lib/XMLHttpRequest.js",
-		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
-		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/Users/igorpalkin/Documents/NodeJsTest/index.html",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/policy/viewPolicy.js",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Views/Policies/ViewPolicy.cshtml",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/claims/reportClaim.js",
@@ -233,11 +265,13 @@
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/policy/dialogs/radioButtonDialog.js",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Controllers/ActorsController.cs",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Global.asax.cs",
+		"/C/_dev/NodeJsTest/app.js",
 		"/C/!/NodejsConsoleApp1/index.html",
 		"/C/!/NodejsConsoleApp1/site.css",
 		"/C/!/NodejsConsoleApp1/app.js",
 		"/C/!/NodejsConsoleApp1/package.json",
 		"/C/!/NodejsConsoleApp1/stringUtils.js",
+		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
 		"/C/!/NodejsConsoleApp1/nw.sublime-build",
 		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/nw.sublime-build",
@@ -247,7 +281,7 @@
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -261,8 +295,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"setuopp",
-			"startDownload",
+			"downloadHandler",
+			"get(",
+			"url",
 			"reinde",
 			"{",
 			"section"
@@ -284,59 +319,88 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "package.json",
+					"file": "app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 435,
+						"buffer_size": 8538,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								260,
-								260
+								7361,
+								7361
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2452.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "stringUtils.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 285,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								285,
+								285
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "appInit.js",
+					"buffer": 2,
+					"file": "index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 494,
+						"buffer_size": 1345,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								208,
-								208
+								761,
+								761
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"word_wrap": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -346,86 +410,53 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4722,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								442,
-								442
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
 					"buffer": 3,
 					"file": "appProxy.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 382,
+						"buffer_size": 667,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								83,
-								83
+								407,
+								407
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "index.html",
+					"file": "index.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 644,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								422,
-								422
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/CSS/CSS.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

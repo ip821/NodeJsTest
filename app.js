@@ -123,8 +123,8 @@ $(document).ready(function() {
             $('#progress').html(percentValue);
             $('#progress').css('width', percentValue);
             $('#progressSong').css('width', 0);
-            $('#audioName').html(stringUtils.format('{0}-{1}.mp3', audioList[index].artist, audioList[index].title));
             index++;
+            $('#audioName').html(stringUtils.format('{0}-{1}.mp3', audioList[index].artist, audioList[index].title));
             $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).addClass('warning');
             startDownload(audioList[index], downloadHandler, progressHandler);
         };
@@ -153,57 +153,77 @@ $(document).ready(function() {
         var headerRequestOptions = appProxy.makeHttpRequest(url);
         headerRequestOptions.method = 'HEAD';
         var headerRequest = http.get(headerRequestOptions, function(headersResponse) {
-
             var streamSize = 0;
             var dataLength = 0;
-            if (headersResponse.headers && fs.existsSync(dest)) {
+            if (headersResponse.headers) {
                 streamSize = parseInt(headersResponse.headers['content-length']);
-                var stats = fs.statSync(dest);
-                var fileSize = parseInt(stats["size"]);
-                console.log(stringUtils.format('Stream size: {0}, File size: {1}', streamSize, fileSize));
-                headerRequest.end();
-                if (streamSize == fileSize) {
-                    console.log('Skipping ' + dest);
-                    callback();
-                    return;
-                }
+                fs.exists(dest, function(exists) {
+                    if (exists) {
+                        fs.stat(dest, function(err, stats) {
+                            var fileSize = parseInt(stats["size"]);
+                            console.log(stringUtils.format('Stream size: {0}, File size: {1}', streamSize, fileSize));
+                            headerRequest.end();
+                            if (streamSize == fileSize) {
+                                console.log('Skipping ' + dest);
+                                callback();
+                                return;
+                            }
+                            downloadInternal();
+                        });
+                        return;
+                    }
+                    downloadInternal();
+                });
+                return;
             }
 
-            var file = fs.createWriteStream(dest);
-            var request = http.get(appProxy.makeHttpRequest(url), function(response) {
-                response.on('data', function(data) {
-                        file.write(data);
-                        dataLength += data.length;
-                        progressCallback(streamSize, dataLength);
-                    })
-                    .on('end', function() {
-                        file.end();
-                        file.close(callback);
-                    })
-                    .on('close', function() {
-                        console.log('Downloading DONE: ' + url);
-                    })
-                    .on('error', function(err) {
-                        console.log('Downloading FAIL: ' + url);
-                        file.close(function() {
-                            fs.unlink(dest);
-                            if (callback)
-                                callback(err);
+            downloadInternal();
+
+            function downloadInternal() {
+                var file = fs.createWriteStream(dest);
+                var request = http.get(appProxy.makeHttpRequest(url), function(response) {
+                    response.on('data', function(data) {
+                            file.write(data);
+                            dataLength += data.length;
+                            progressCallback(streamSize, dataLength);
+                        })
+                        .on('end', function() {
+                            file.end();
+                            file.close(callback);
+                            console.log('Downloading DONE: ' + url);
+                        })
+                        .on('error', function(err) {
+                            console.log('Downloading FAIL: ' + url);
+                            file.close(function() {
+                                fs.unlink(dest);
+                                if (callback)
+                                    callback(err);
+                            });
                         });
-                    });
-            });
+                });
+            }
         });
     }
 
     function startDownload(item, onFinishedCallback, progressCallback) {
         var strHomeFolderPath = getMusicFolder();
         var strMusicPath = path.join(strHomeFolderPath, 'JsVkAudioSync');
-        if (!fs.existsSync(strMusicPath))
-            fs.mkdirSync(strMusicPath);
+        fs.exists(strMusicPath, function(exists) {
+            if (!exists) {
+                fs.mkdir(strMusicPath, function() {
+                    startDownloadInternal();
+                });
+                return;
+            }
 
-        var strFileName = item.artist + "-" + item.title + '.mp3';
-        strFileName = strFileName.replace('/', '');
-        var strFilePath = path.join(strMusicPath, strFileName);
-        download(item.url, strFilePath, onFinishedCallback, progressCallback);
+            startDownloadInternal();
+
+            function startDownloadInternal() {
+                var strFileName = item.artist + "-" + item.title + '.mp3';
+                strFileName = strFileName.replace('/', '');
+                var strFilePath = path.join(strMusicPath, strFileName);
+                download(item.url, strFilePath, onFinishedCallback, progressCallback);
+            }
+        });
     }
 });
