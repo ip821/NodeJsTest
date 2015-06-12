@@ -94,6 +94,7 @@ $(document).ready(function() {
 
         function progressHandler(streamSize, dataLegth) {
             var percentValue = parseInt((dataLegth / streamSize) * 100) + '%';
+            //console.log(stringUtils.format('PROGRESS: {0}, dataLegth: {1}, streamSize: {2}', percentValue, dataLegth, streamSize));
             $('#progressSong').css('width', percentValue);
             $('#progressSong').html(percentValue);
         }
@@ -160,9 +161,11 @@ $(document).ready(function() {
                 var stats = fs.statSync(dest);
                 var fileSize = parseInt(stats["size"]);
                 console.log(stringUtils.format('Stream size: {0}, File size: {1}', streamSize, fileSize));
+                headerRequest.end();
                 if (streamSize == fileSize) {
                     console.log('Skipping ' + dest);
                     callback();
+                    return;
                 }
             }
 
@@ -176,6 +179,8 @@ $(document).ready(function() {
                     .on('end', function() {
                         file.end();
                         file.close(callback);
+                    })
+                    .on('close', function() {
                         console.log('Downloading DONE: ' + url);
                     })
                     .on('error', function(err) {
