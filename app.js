@@ -100,8 +100,10 @@ $(document).ready(function() {
         }
 
         function downloadHandler(err) {
-            if (audioList.length == index - 1)
+            if (audioList.length - 1 === index) {
                 stop = true;
+                console.log('audioList is done.');
+            }
             if ((err && err.message) || stop) {
                 if (err) {
                     $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).removeClass('success');
@@ -163,7 +165,7 @@ $(document).ready(function() {
                             var fileSize = parseInt(stats["size"]);
                             console.log(stringUtils.format('Stream size: {0}, File size: {1}', streamSize, fileSize));
                             headerRequest.end();
-                            if (streamSize == fileSize) {
+                            if (streamSize === fileSize) {
                                 console.log('Skipping ' + dest);
                                 callback();
                                 return;
