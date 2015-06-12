@@ -92,6 +92,12 @@ $(document).ready(function() {
         var index = 0;
         var stop = false;
 
+        function progressHandler(streamSize, dataLegth) {
+            var percentValue = parseInt((dataLegth / streamSize) * 100) + '%';
+            $('#progressSong').css('width', percentValue);
+            $('#progressSong').html(percentValue);
+        }
+
         function downloadHandler(err) {
             if (audioList.length == index - 1)
                 stop = true;
@@ -105,6 +111,7 @@ $(document).ready(function() {
                 $('#stopButton').addClass('hidden');
                 $('#syncButton').removeClass('hidden');
                 $('#progressContainer').addClass('hidden');
+                $('#progressSongContainer').addClass('hidden');
                 $('#audioName').addClass('hidden');
                 return;
             }
@@ -113,12 +120,12 @@ $(document).ready(function() {
             $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).addClass('success');
             var percentValue = parseInt((index / audioList.length) * 100) + '%';
             $('#progress').html(percentValue);
-            $('#progress').attr('aria-valuenow', index);
             $('#progress').css('width', percentValue);
+            $('#progressSong').css('width', 0);
             $('#audioName').html(stringUtils.format('{0}-{1}.mp3', audioList[index].artist, audioList[index].title));
             index++;
             $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).addClass('warning');
-            startDownload(audioList[index], downloadHandler);
+            startDownload(audioList[index], downloadHandler, progressHandler);
         };
 
         $('#stopButton').removeClass('hidden');
@@ -129,8 +136,10 @@ $(document).ready(function() {
 
         $('#audioName').removeClass('hidden');
         $('#progressContainer').removeClass('hidden');
+        $('#progressSongContainer').removeClass('hidden');
         $('#progress').attr('aria-valuemax', audioList.length);
-        startDownload(audioList[index], downloadHandler);
+        $('#progressSong').css('width', 0);
+        startDownload(audioList[index], downloadHandler, progressHandler);
     });
 
     function getMusicFolder() {
@@ -138,14 +147,16 @@ $(document).ready(function() {
         return path.join(strHomeFolder, 'Music');
     }
 
-    function download(url, dest, callback) {
+    function download(url, dest, callback, progressCallback) {
         console.log('Downloading START: ' + url);
         var headerRequestOptions = appProxy.makeHttpRequest(url);
         headerRequestOptions.method = 'HEAD';
         var headerRequest = http.get(headerRequestOptions, function(headersResponse) {
 
+            var streamSize = 0;
+            var dataLength = 0;
             if (headersResponse.headers && fs.existsSync(dest)) {
-                var streamSize = parseInt(headersResponse.headers['content-length']);
+                streamSize = parseInt(headersResponse.headers['content-length']);
                 var stats = fs.statSync(dest);
                 var fileSize = parseInt(stats["size"]);
                 console.log(stringUtils.format('Stream size: {0}, File size: {1}', streamSize, fileSize));
@@ -159,6 +170,8 @@ $(document).ready(function() {
             var request = http.get(appProxy.makeHttpRequest(url), function(response) {
                 response.on('data', function(data) {
                         file.write(data);
+                        dataLength += data.length;
+                        progressCallback(streamSize, dataLength);
                     })
                     .on('end', function() {
                         file.end();
@@ -177,7 +190,7 @@ $(document).ready(function() {
         });
     }
 
-    function startDownload(item, onFinishedCallback) {
+    function startDownload(item, onFinishedCallback, progressCallback) {
         var strHomeFolderPath = getMusicFolder();
         var strMusicPath = path.join(strHomeFolderPath, 'JsVkAudioSync');
         if (!fs.existsSync(strMusicPath))
@@ -186,6 +199,6 @@ $(document).ready(function() {
         var strFileName = item.artist + "-" + item.title + '.mp3';
         strFileName = strFileName.replace('/', '');
         var strFilePath = path.join(strMusicPath, strFileName);
-        download(item.url, strFilePath, onFinishedCallback);
+        download(item.url, strFilePath, onFinishedCallback, progressCallback);
     }
 });
