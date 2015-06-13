@@ -1,6 +1,6 @@
 ﻿var strUrlApi = 'https://api.vk.com/method/';
 
-var appInit = require('./appInit');
+var appInit = require('./app_modules/appInit');
 appInit.initJQuery(this);
 appInit.initXMLHttpRequest(this);
 
@@ -10,8 +10,8 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 var pathExtra = require('path-extra');
-var appProxy = require('./appProxy');
-var stringUtils = require('./stringUtils');
+var appProxy = require('./app_modules/appProxy');
+var stringUtils = require('./app_modules/stringUtils');
 
 gui.Window.get().show();
 gui.Window.get().showDevTools();
