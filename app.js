@@ -1,7 +1,5 @@
-﻿var strUrlApi = 'https://api.vk.com/method/';
-
 var appInit = require('./app_modules/appInit');
-appInit.initJQuery(this);
+appInit.initJQuery(window, this);
 appInit.initXMLHttpRequest(this);
 
 var gui = require('nw.gui');
@@ -12,64 +10,26 @@ var path = require('path');
 var pathExtra = require('path-extra');
 var appProxy = require('./app_modules/appProxy');
 var stringUtils = require('./app_modules/stringUtils');
+var vkApi = require('./app_modules/vkApi');
 
 gui.Window.get().show();
 gui.Window.get().showDevTools();
 
 appProxy.init(gui.App);
 
-var accessToken = undefined;
-var userId = undefined;
 var audioList = undefined;
-
-var strUrl = 'http://oauth.vk.com/authorize?client_id=4225742&scope=8&redirect_uri=http://oauth.vk.com/blank.html&display=wap&response_type=token';
 
 $(document).ready(function() {
 
-    window.intervalId = window.setInterval("window.hashUpdate()", 500);
-    window.loginWindow = window.open(strUrl, "Login", false);
-    window.hashUpdate = function() {
-        if (window.loginWindow.closed) {
-            window.clearInterval(intervalId);
-            start();
-        } else {
-            var strUrl = window.loginWindow.document.URL;
-            if (strUrl.indexOf('#') > -1) {
-                var strParams = strUrl.split('#')[1];
-                if (strParams.indexOf('&') > -1) {
-                    var params = strParams.split('&');
-                    console.log(params);
+    vkApi.openLoginWindow(window, function(userId, accessToken) {
+        start(userId, accessToken);
+    });
 
-                    params.forEach(function(item) {
-                        var keyValue = item.split('=');
-                        if (keyValue[0] === 'user_id') {
-                            userId = keyValue[1];
-                            console.log("userId: " + userId);
-                        }
-                        if (keyValue[0] === 'access_token') {
-                            accessToken = keyValue[1];
-                            console.log("accessToken: " + accessToken);
-                        }
-                    });
-                    window.loginWindow.close();
-                }
-            }
-        }
-    }
-
-    function start() {
-        var strUrl = strUrlApi + 'audio.get?' + $.param({
-                uid: userId,
-                access_token: accessToken
-            }) //uid=' + userId + '&access_token=' + accessToken;
-        console.log("Request:");
-        console.log(strUrl);
-        $.ajax({
-                type: 'GET',
-                url: strUrl,
-                data: {}
-            })
-            .success(function(e) {
+    function start(userId, accessToken) {
+        vkApi.getAudioList(
+            userId, 
+            accessToken, 
+            function(e) {
                 console.log("Success!");
                 console.log(e);
 
@@ -81,8 +41,8 @@ $(document).ready(function() {
                         '</tr>');
                 });
                 $('#syncBadge').html(audioList.length);
-            })
-            .error(function(e) {
+            },
+            function(e) {
                 console.log("Error!");
                 console.log(e);
             });

@@ -1,7 +1,10 @@
-    function initJQuery(scope) {
+    function initJQuery(window, scope) {
         scope.$ = require("jquery");
-        global.jQuery = scope.$;
-        global.document = scope.window.document;
+        scope.jQuery = scope.$;
+
+         $ = scope.$;
+         jQuery = scope.$;
+         document = window.document;
     }
 
     function initXMLHttpRequest(scope) {
@@ -13,5 +16,5 @@
         };
     }
 
-exports.initJQuery = initJQuery;
-exports.initXMLHttpRequest = initXMLHttpRequest;
+    exports.initJQuery = initJQuery;
+    exports.initXMLHttpRequest = initXMLHttpRequest;
