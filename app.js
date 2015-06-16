@@ -4,13 +4,13 @@ appInit.initXMLHttpRequest(this);
 
 var gui = require('nw.gui');
 var bootstrap = require("bootstrap");
-var http = require('http');
 var fs = require('fs');
 var path = require('path');
 var pathExtra = require('path-extra');
 var appProxy = require('./app_modules/appProxy');
 var stringUtils = require('./app_modules/stringUtils');
 var vkApi = require('./app_modules/vkApi');
+var downloadManager = require('./app_modules/downloadManager');
 
 gui.Window.get().show();
 gui.Window.get().showDevTools();
@@ -22,30 +22,35 @@ var audioList = undefined;
 $(document).ready(function() {
 
     vkApi.openLoginWindow(window, function(userId, accessToken) {
-        start(userId, accessToken);
+        initAudioList(userId, accessToken);
     });
 
-    function start(userId, accessToken) {
+    function initAudioList(userId, accessToken) {
         vkApi.getAudioList(
-            userId, 
-            accessToken, 
-            function(e) {
-                console.log("Success!");
-                console.log(e);
+            userId,
+            accessToken,
+            getAudioListSuccess,
+            getAudioListError
+        );
 
-                audioList = e.response;
-                e.response.forEach(function(item) {
-                    $('#tableBody').append(stringUtils.format('<tr class="audioRow" id="{0}">', item.aid) +
-                        '<td>' + item.artist + '</td>' +
-                        '<td>' + item.title + '</td>' +
-                        '</tr>');
-                });
-                $('#syncBadge').html(audioList.length);
-            },
-            function(e) {
-                console.log("Error!");
-                console.log(e);
+        function getAudioListSuccess(e) {
+            console.log("Success!");
+            console.log(e);
+
+            audioList = e.response;
+            e.response.forEach(function(item) {
+                $('#tableBody').append(stringUtils.format('<tr class="audioRow" id="{0}">', item.aid) +
+                    '<td>' + item.artist + '</td>' +
+                    '<td>' + item.title + '</td>' +
+                    '</tr>');
             });
+            $('#syncBadge').html(audioList.length);
+        }
+
+        function getAudioListError(e) {
+            console.log("Error!");
+            console.log(e);
+        }
     }
 
     $('#syncButton').click(function() {
@@ -105,70 +110,9 @@ $(document).ready(function() {
         startDownload(audioList[index], downloadHandler, progressHandler);
     });
 
-    function getMusicFolder() {
-        var strHomeFolder = pathExtra.homedir();
-        return path.join(strHomeFolder, 'Music');
-    }
-
-    function download(url, dest, callback, progressCallback) {
-        console.log('Downloading START: ' + url);
-        var headerRequestOptions = appProxy.makeHttpRequest(url);
-        headerRequestOptions.method = 'HEAD';
-        var headerRequest = http.get(headerRequestOptions, function(headersResponse) {
-            var streamSize = 0;
-            var dataLength = 0;
-            if (headersResponse.headers) {
-                streamSize = parseInt(headersResponse.headers['content-length']);
-                fs.exists(dest, function(exists) {
-                    if (exists) {
-                        fs.stat(dest, function(err, stats) {
-                            var fileSize = parseInt(stats["size"]);
-                            console.log(stringUtils.format('Stream size: {0}, File size: {1}', streamSize, fileSize));
-                            headerRequest.end();
-                            if (streamSize === fileSize) {
-                                console.log('Skipping ' + dest);
-                                callback();
-                                return;
-                            }
-                            downloadInternal();
-                        });
-                        return;
-                    }
-                    downloadInternal();
-                });
-                return;
-            }
-
-            downloadInternal();
-
-            function downloadInternal() {
-                var file = fs.createWriteStream(dest);
-                var request = http.get(appProxy.makeHttpRequest(url), function(response) {
-                    response.on('data', function(data) {
-                            file.write(data);
-                            dataLength += data.length;
-                            progressCallback(streamSize, dataLength);
-                        })
-                        .on('end', function() {
-                            file.end();
-                            file.close(callback);
-                            console.log('Downloading DONE: ' + url);
-                        })
-                        .on('error', function(err) {
-                            console.log('Downloading FAIL: ' + url);
-                            file.close(function() {
-                                fs.unlink(dest);
-                                if (callback)
-                                    callback(err);
-                            });
-                        });
-                });
-            }
-        });
-    }
-
     function startDownload(item, onFinishedCallback, progressCallback) {
-        var strHomeFolderPath = getMusicFolder();
+        var strHomeFolder = pathExtra.homedir();
+        var strHomeFolderPath = path.join(strHomeFolder, 'Music');
         var strMusicPath = path.join(strHomeFolderPath, 'JsVkAudioSync');
         fs.exists(strMusicPath, function(exists) {
             if (!exists) {
@@ -184,7 +128,7 @@ $(document).ready(function() {
                 var strFileName = item.artist + "-" + item.title + '.mp3';
                 strFileName = strFileName.replace('/', '');
                 var strFilePath = path.join(strMusicPath, strFileName);
-                download(item.url, strFilePath, onFinishedCallback, progressCallback);
+                downloadManager.download(appProxy, item.url, strFilePath, onFinishedCallback, progressCallback);
             }
         });
     }
