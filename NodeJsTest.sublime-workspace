@@ -4,44 +4,48 @@
 		"selected_items":
 		[
 			[
-				"download",
-				"downloadInternal"
+				"getAud",
+				"getAudioListError"
 			],
 			[
-				"downlaod",
-				"downloadInternal"
+				"getAUdio",
+				"getAudioListSuccess"
+			],
+			[
+				"down",
+				"downloadManager"
 			],
 			[
 				"data",
 				"dataLegth"
 			],
 			[
-				"strFile",
-				"strFileName"
+				"progress",
+				"progressSong"
+			],
+			[
+				"strUr",
+				"strUrlApi"
 			],
 			[
 				"audio",
-				"audioName"
+				"audioList"
+			],
+			[
+				"start",
+				"startDownload"
+			],
+			[
+				"path",
+				"pathExtra"
+			],
+			[
+				"strFie",
+				"strFilePath"
 			],
 			[
 				"for",
-				"format"
-			],
-			[
-				"fiel",
-				"fileSize"
-			],
-			[
-				"file",
-				"fileSize"
-			],
-			[
-				"pars",
-				"parsedUrl"
-			],
-			[
-				"pa",
-				"parsedUrl"
+				"forEach"
 			],
 			[
 				"user",
@@ -56,18 +60,18 @@
 	"buffers":
 	[
 		{
-			"file": "app.js",
+			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 9387,
-				"line_ending": "Windows"
+				"buffer_size": 435,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"contents": "    function initJQuery(scope) {\n        scope.$ = require(\"jquery\");\n        global.jQuery = scope.$;\n        global.document = scope.window.document;\n    }\n\n    function initXMLHttpRequest(scope) {\n        XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;\n\n        scope.$.support.cors = true;\n        scope.$.ajaxSettings.xhr = function() {\n            return new XMLHttpRequest();\n        };\n    }\n\nexports.initJQuery = initJQuery;\nexports.initXMLHttpRequest = initXMLHttpRequest;\n",
 			"file": "appInit.js",
 			"file_size": 511,
-			"file_write_time": 130785186400000000,
+			"file_write_time": 130784971060245414,
 			"settings":
 			{
 				"buffer_size": 494,
@@ -75,14 +79,30 @@
 			}
 		},
 		{
-			"contents": "    function format(format) {\n        var args = Array.prototype.slice.call(arguments, 1);\n        return format.replace(/{(\\d+)}/g, function(match, number) {\n            return typeof args[number] != 'undefined' ? args[number] : match;\n        });\n    }\n\n    exports.format = format;\n",
-			"file": "stringUtils.js",
-			"file_size": 285,
-			"file_write_time": 130785255430000000,
+			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 285,
-				"line_ending": "Unix"
+				"buffer_size": 5326,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_modules/downloadManager.js",
+			"settings":
+			{
+				"buffer_size": 2369,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "var app;\n\nfunction init(app) {\n    this.app = app;\n}\n\nfunction makeHttpRequest(url) {\n\n    var urlUtils = require('url');\n\n    var strProxy = this.app.getProxyForURL(url);\n    console.log('Proxy info:' + strProxy);\n    if (strProxy === 'DIRECT') {\n    	var parsedUrl = urlUtils.parse(url);\n        return {\n            host: parsedUrl.host,\n            post: parsedUrl.port,\n            path: parsedUrl.path\n        };\n    }\n\n    var strProxy = strProxy.replace('PROXY ', '');\n    var parts = strProxy.split(':');\n    return {\n        host: parts[0],\n        port: parts[1],\n        path: url\n    };\n}\n\nexports.makeHttpRequest = makeHttpRequest;\nexports.init = init;\n",
+			"file": "appProxy.js",
+			"file_size": 699,
+			"file_write_time": 130785645234568336,
+			"settings":
+			{
+				"buffer_size": 667,
+				"line_ending": "Windows"
 			}
 		},
 		{
@@ -91,25 +111,6 @@
 			{
 				"buffer_size": 1371,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "var app;\n\nfunction init(app) {\n    this.app = app;\n}\n\nfunction makeHttpRequest(url) {\n\n    var urlUtils = require('url');\n\n    var strProxy = this.app.getProxyForURL(url);\n    console.log('Proxy info:' + strProxy);\n    if (strProxy === 'DIRECT') {\n    	var parsedUrl = urlUtils.parse(url);\n        return {\n            host: parsedUrl.host,\n            post: parsedUrl.port,\n            path: parsedUrl.path\n        };\n    }\n\n    var strProxy = strProxy.replace('PROXY ', '');\n    var parts = strProxy.split(':');\n    return {\n        host: parts[0],\n        port: parts[1],\n        path: url\n    };\n}\n\nexports.makeHttpRequest = makeHttpRequest;\nexports.init = init;\n",
-			"file": "appProxy.js",
-			"file_size": 699,
-			"file_write_time": 130785244460000000,
-			"settings":
-			{
-				"buffer_size": 667,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.css",
-			"settings":
-			{
-				"buffer_size": 161,
-				"line_ending": "Unix"
 			}
 		}
 	],
@@ -120,69 +121,65 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "pus",
+		"height": 127.0,
+		"last_filter": "push",
 		"selected_items":
 		[
 			[
-				"pus",
-				"Git: Push"
-			],
-			[
-				"commit",
-				"Git: Commit"
-			],
-			[
-				"git add",
-				"Git: Add..."
-			],
-			[
 				"push",
 				"Git: Push"
-			],
-			[
-				"com",
-				"Git: Commit"
 			],
 			[
 				"comm",
 				"Git: Commit"
 			],
 			[
-				"stat",
-				"Git: Status"
+				"add",
+				"Git: Add..."
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"syntax js",
+				"Set Syntax: JavaScript"
 			],
 			[
 				"pull",
 				"Git: Pull"
 			],
 			[
-				"git stat",
-				"Git: Status"
+				"insta",
+				"Package Control: Install Package"
 			],
 			[
-				"git comm",
-				"Git: Commit"
+				"package",
+				"Package Control: List Packages"
 			],
 			[
-				"status",
-				"Git: Status"
-			],
-			[
-				"git",
-				"Git: Add..."
-			],
-			[
-				"git g",
-				"Git: Gui"
-			],
-			[
-				"git ",
+				"git pu",
 				"Git: Pull"
 			],
 			[
-				"install",
-				"Package Control: Install Package"
+				"commit",
+				"Git: Commit"
+			],
+			[
+				"word",
+				"Word Wrap: Toggle"
+			],
+			[
+				"git pull",
+				"Git: Pull"
+			],
+			[
+				"c#",
+				"Set Syntax: C#"
+			],
+			[
+				"git di",
+				"Git: Diff Current File"
 			],
 			[
 				"npm",
@@ -191,6 +188,26 @@
 			[
 				"remove",
 				"Package Control: Remove Package"
+			],
+			[
+				"git",
+				"Git: Pull"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"prett",
+				"HTMLPrettify"
+			],
+			[
+				"istall",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
 			],
 			[
 				"lint ",
@@ -207,10 +224,6 @@
 			[
 				"packa",
 				"Package Control: Install Package"
-			],
-			[
-				"package",
-				"Package Control: List Packages"
 			],
 			[
 				"nim",
@@ -249,19 +262,11 @@
 				"Github: Repository"
 			],
 			[
-				"insta",
-				"Package Control: Install Package"
-			],
-			[
-				"c#",
-				"Set Syntax: C#"
-			],
-			[
 				"instal",
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 416.0
 	},
 	"console":
 	{
@@ -282,11 +287,17 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/igorpalkin/Documents/NodeJsTest"
+		"/C/_dev/NodeJsTest",
+		"/C/_dev/NodeJsTest/app_modules"
 	],
 	"file_history":
 	[
-		"/Users/igorpalkin/Documents/NodeJsTest/index.html",
+		"/C/_dev/NodeJsTest/node_modules/jquery/dist/jquery.js",
+		"/C/_dev/NodeJsTest/app.js",
+		"/C/_dev/NodeJsTest/app_modules/vkApi.js",
+		"/C/_dev/NodeJsTest/node_modules/xmlhttprequest/lib/XMLHttpRequest.js",
+		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/policy/viewPolicy.js",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Views/Policies/ViewPolicy.cshtml",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/claims/reportClaim.js",
@@ -294,13 +305,11 @@
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Scripts/policy/dialogs/radioButtonDialog.js",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Controllers/ActorsController.cs",
 		"/C/_dev/Vamos/Sources/PublicApi/PublicApiWebSample/Global.asax.cs",
-		"/C/_dev/NodeJsTest/app.js",
 		"/C/!/NodejsConsoleApp1/index.html",
 		"/C/!/NodejsConsoleApp1/site.css",
 		"/C/!/NodejsConsoleApp1/app.js",
 		"/C/!/NodejsConsoleApp1/package.json",
 		"/C/!/NodejsConsoleApp1/stringUtils.js",
-		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
 		"/C/!/NodejsConsoleApp1/nw.sublime-build",
 		"/C/Users/ip.INVENSUS/AppData/Roaming/Sublime Text 3/Packages/User/nw.sublime-build",
@@ -310,7 +319,7 @@
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -324,10 +333,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"sync",
-			"downloadHandler",
-			"get(",
-			"url",
+			"getMusicFolder",
+			"appProxy",
+			"startDownload",
+			"progressContainer",
+			"setuopp",
+			"startDownload",
 			"reinde",
 			"{",
 			"section"
@@ -349,43 +360,43 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app.js",
+					"file": "package.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9387,
+						"buffer_size": 435,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								84,
-								84
+								260,
+								260
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
 					"file": "appInit.js",
-					"semi_transient": true,
+					"semi_transient": false,
 					"settings":
 					{
 						"buffer_size": 494,
@@ -395,15 +406,13 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								208,
+								208
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -414,58 +423,59 @@
 				},
 				{
 					"buffer": 2,
-					"file": "stringUtils.js",
+					"file": "app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 285,
+						"buffer_size": 5326,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								285,
-								285
+								1510,
+								1510
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": -0.0,
+						"translation.y": 495.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "index.html",
+					"file": "app_modules/downloadManager.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1371,
+						"buffer_size": 2369,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								956,
-								956
+								979,
+								979
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"word_wrap": false
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 270.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -484,45 +494,47 @@
 						"selection":
 						[
 							[
-								407,
-								407
+								83,
+								83
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "index.css",
+					"file": "index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 161,
+						"buffer_size": 1371,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								26,
-								1
+								1045,
+								1045
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": false
 						},
-						"translation.x": 0.0,
+						"translation.x": 28.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
