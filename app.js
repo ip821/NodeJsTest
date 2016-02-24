@@ -8,7 +8,7 @@ var fs = require('fs');
 var path = require('path');
 var pathExtra = require('path-extra');
 var appProxy = require('./app_modules/appProxy');
-var stringUtils = require('./app_modules/stringUtils');
+var stringUtils = require('./app_modules/strings');
 var vkApi = require('./app_modules/vkApi');
 var downloadManager = require('./app_modules/downloadManager');
 
