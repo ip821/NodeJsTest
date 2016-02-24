@@ -82,7 +82,7 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 5326,
+				"buffer_size": 5322,
 				"line_ending": "Windows"
 			}
 		},
@@ -98,8 +98,8 @@
 			"file": "app_modules/vkApi.js",
 			"settings":
 			{
-				"buffer_size": 2446,
-				"line_ending": "Unix"
+				"buffer_size": 2441,
+				"line_ending": "Windows"
 			}
 		},
 		{
@@ -137,10 +137,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 127.0,
-		"last_filter": "push",
+		"height": 334.0,
+		"last_filter": "insta",
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
 			[
 				"push",
 				"Git: Push"
@@ -164,10 +168,6 @@
 			[
 				"pull",
 				"Git: Pull"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
 			],
 			[
 				"package",
@@ -282,7 +282,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 416.0
+		"width": 472.0
 	},
 	"console":
 	{
@@ -445,15 +445,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5326,
+						"buffer_size": 5322,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5326,
-								5326
+								0,
+								0
 							]
 						],
 						"settings":
@@ -505,7 +505,7 @@
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 2446,
+						"buffer_size": 2441,
 						"regions":
 						{
 						},
