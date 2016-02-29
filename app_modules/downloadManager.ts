@@ -1,7 +1,8 @@
-var http = require('http');
-var fs = require('fs');
+import http = require('http');
+import fs = require('fs');
+import stringUtils = require('./strings');
 
-function download(appProxy, url, dest, callback, progressCallback) {
+export function download(appProxy, url, dest, callback, progressCallback) {
     console.log('Downloading START: ' + url);
     var headerRequestOptions = appProxy.makeHttpRequest(url);
     headerRequestOptions.method = 'HEAD';
@@ -57,5 +58,3 @@ function download(appProxy, url, dest, callback, progressCallback) {
         }
     });
 }
-
-exports.download = download;

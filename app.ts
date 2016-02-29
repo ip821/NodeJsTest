@@ -1,16 +1,16 @@
-var appInit = require('./app_modules/appInit');
+import appInit = require('./app_modules/appInit');
 appInit.initJQuery(window, this);
 appInit.initXMLHttpRequest(this);
 
-var gui = require('nw.gui');
-var bootstrap = require("bootstrap");
-var fs = require('fs');
-var path = require('path');
-var pathExtra = require('path-extra');
-var appProxy = require('./app_modules/appProxy');
-var stringUtils = require('./app_modules/strings');
-var vkApi = require('./app_modules/vkApi');
-var downloadManager = require('./app_modules/downloadManager');
+import gui = require('nw.gui');
+import bootstrap = require("bootstrap");
+import fs = require('fs');
+import path = require('path');
+import pathExtra = require('./node_modules/path-extra/lib/path');
+import appProxy = require('./app_modules/appProxy');
+import stringUtils = require('./app_modules/strings');
+import vkApi = require('./app_modules/vkApi');
+import downloadManager = require('./app_modules/downloadManager');
 
 gui.Window.get().show();
 gui.Window.get().showDevTools();
@@ -58,7 +58,7 @@ $(document).ready(function() {
         var stop = false;
 
         function progressHandler(streamSize, dataLegth) {
-            var percentValue = parseInt((dataLegth / streamSize) * 100) + '%';
+            var percentValue = Math.round((dataLegth / streamSize) * 100) + '%';
             //console.log(stringUtils.format('PROGRESS: {0}, dataLegth: {1}, streamSize: {2}', percentValue, dataLegth, streamSize));
             $('#progressSong').css('width', percentValue);
             $('#progressSong').html(percentValue);
@@ -86,7 +86,7 @@ $(document).ready(function() {
             $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).removeClass('error');
             $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).removeClass('warning');
             $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).addClass('success');
-            var percentValue = parseInt((index / audioList.length) * 100) + '%';
+            var percentValue = Math.floor((index / audioList.length) * 100) + '%';
             $('#progress').html(percentValue);
             $('#progress').css('width', percentValue);
             $('#progressSong').css('width', 0);

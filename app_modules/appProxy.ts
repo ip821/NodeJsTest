@@ -1,12 +1,18 @@
 var app;
 
-function init(app) {
+export function init(app) {
     this.app = app;
 }
 
-function makeHttpRequest(url) {
+export interface ProxyDescriptor {
+    host: string;
+    port: string;
+    path: string;
+}
 
-    var urlUtils = require('url');
+export function makeHttpRequest(url): ProxyDescriptor {
+
+    import urlUtils = require('url');
 
     var strProxy = this.app.getProxyForURL(url);
     console.log('Proxy info:' + strProxy);
@@ -14,7 +20,7 @@ function makeHttpRequest(url) {
     	var parsedUrl = urlUtils.parse(url);
         return {
             host: parsedUrl.host,
-            post: parsedUrl.port,
+            port: parsedUrl.port,
             path: parsedUrl.path
         };
     }
@@ -27,6 +33,3 @@ function makeHttpRequest(url) {
         path: url
     };
 }
-
-exports.makeHttpRequest = makeHttpRequest;
-exports.init = init;
