@@ -4,6 +4,5 @@
 /app_modules/vkApi.js
 /*.map
 /app.js
-/app_modules/appInit.js
 /app_modules/appProxy.js
 /app_modules/downloadManager.js
