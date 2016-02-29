@@ -14,7 +14,7 @@ export function download(appProxy, url, dest, callback, progressCallback) {
             fs.exists(dest, function(exists) {
                 if (exists) {
                     fs.stat(dest, function(err, stats) {
-                        var fileSize = parseInt(stats["size"]);
+                        var fileSize = stats.size;
                         console.log(stringUtils.format('Stream size: {0}, File size: {1}', streamSize, fileSize));
                         headerRequest.end();
                         if (streamSize === fileSize) {
@@ -37,22 +37,21 @@ export function download(appProxy, url, dest, callback, progressCallback) {
             var file = fs.createWriteStream(dest);
             var request = http.get(appProxy.makeHttpRequest(url), function(response) {
                 response.on('data', function(data) {
-                        file.write(data);
-                        dataLength += data.length;
-                        progressCallback(streamSize, dataLength);
-                    })
+                    file.write(data);
+                    dataLength += data.length;
+                    progressCallback(streamSize, dataLength);
+                })
                     .on('end', function() {
                         file.end();
-                        file.close(callback);
+                        file.close();
                         console.log('Downloading DONE: ' + url);
                     })
                     .on('error', function(err) {
                         console.log('Downloading FAIL: ' + url);
-                        file.close(function() {
-                            fs.unlink(dest);
-                            if (callback)
-                                callback(err);
-                        });
+                        file.close();
+                        fs.unlink(dest);
+                        if (callback)
+                            callback(err);
                     });
             });
         }
