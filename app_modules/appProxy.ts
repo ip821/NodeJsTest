@@ -1,4 +1,5 @@
 var app;
+import urlUtils = require('url');
 
 export function init(app) {
     this.app = app;
@@ -11,9 +12,6 @@ export interface ProxyDescriptor {
 }
 
 export function makeHttpRequest(url): ProxyDescriptor {
-
-    import urlUtils = require('url');
-
     var strProxy = this.app.getProxyForURL(url);
     console.log('Proxy info:' + strProxy);
     if (strProxy === 'DIRECT') {
