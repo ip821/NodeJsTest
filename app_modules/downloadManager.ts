@@ -45,6 +45,7 @@ export function download(appProxy, url, dest, callback, progressCallback) {
                         file.end();
                         file.close();
                         console.log('Downloading DONE: ' + url);
+                        callback();
                     })
                     .on('error', function(err) {
                         console.log('Downloading FAIL: ' + url);

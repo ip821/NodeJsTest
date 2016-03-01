@@ -19,9 +19,9 @@ appProxy.init(gui.App);
 
 var audioList = undefined;
 
-$(document).ready(function() {
+$(document).ready(() => {
 
-    vkApi.openLoginWindow(window, function(userId, accessToken) {
+    vkApi.openLoginWindow(window, (userId, accessToken) => {
         initAudioList(userId, accessToken);
     });
 
@@ -53,7 +53,7 @@ $(document).ready(function() {
         }
     }
 
-    $('#syncButton').click(function() {
+    $('#syncButton').click(() => {
         var index = 0;
         var stop = false;
 
@@ -114,7 +114,7 @@ $(document).ready(function() {
         var strHomeFolder = pathExtra.homedir();
         var strHomeFolderPath = path.join(strHomeFolder, 'Music');
         var strMusicPath = path.join(strHomeFolderPath, 'JsVkAudioSync');
-        fs.exists(strMusicPath, function(exists) {
+        fs.exists(strMusicPath, (exists) => {
             if (!exists) {
                 fs.mkdir(strMusicPath, function() {
                     startDownloadInternal();
