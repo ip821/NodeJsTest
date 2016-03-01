@@ -6,9 +6,9 @@ var strUrlApi = 'https://api.vk.com/method/';
 
 var appInit = require('./appInit');
 
-export function openLoginWindow(parentWindow, onClosedCallback) {
+export function openLoginWindow(parentWindow: Window, onClosedCallback: (userId: string, accessToken: string)=> void) {
     var intervalId = parentWindow.setInterval(hashUpdate, 500);
-    var loginWindow = parentWindow.open(strUrl, "Login", false);
+    var loginWindow: Window = parentWindow.open(strUrl, "Login");
 
     var userId = undefined;
     var accessToken = undefined;
