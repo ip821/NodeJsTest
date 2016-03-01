@@ -4,6 +4,14 @@
         "**/*.js": {
             "when": "$(basename).ts"
         },
-     "**/*.js.map": true
-    }
+        "**/*.js.map": true
+    },
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "/tsconfig.json"
+            ],
+            "url": "http://json.schemastore.org/tsconfig"
+        }
+    ]
 }
