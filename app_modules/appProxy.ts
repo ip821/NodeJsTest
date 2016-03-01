@@ -1,7 +1,9 @@
-var app;
 import urlUtils = require('url');
+import nw = require("nw.gui");
 
-export function init(app) {
+var app: nw.App;
+
+export function init(app: nw.App) {
     this.app = app;
 }
 
@@ -11,7 +13,7 @@ export interface ProxyDescriptor {
     path: string;
 }
 
-export function makeHttpRequest(url): ProxyDescriptor {
+export function makeHttpRequest(url: string): ProxyDescriptor {
     var strProxy = this.app.getProxyForURL(url);
     console.log('Proxy info:' + strProxy);
     if (strProxy === 'DIRECT') {

@@ -14,6 +14,7 @@ import downloadManager = require('./app_modules/downloadManager');
 
 gui.Window.get().show();
 gui.Window.get().showDevTools();
+gui.Window.get().focus();
 
 appProxy.init(gui.App);
 
