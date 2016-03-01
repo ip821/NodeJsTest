@@ -1,7 +1,7 @@
 var strUrl = 'http://oauth.vk.com/authorize?client_id=4225742&scope=8&redirect_uri=http://oauth.vk.com/blank.html&display=wap&response_type=token';
 var strUrlApi = 'https://api.vk.com/method/';
 
-import appInit = require('./appInit');
+var appInit = require('./appInit');
 import $ = require('jquery');
 import _ = require('underscore');
 

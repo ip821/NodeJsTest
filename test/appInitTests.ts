@@ -1,15 +1,5 @@
 import assert = require('assert');
-import appInit = require('../app_modules/appInit');
-
-declare var $;
-declare var jQuery;
-declare var document;
-declare var XMLHttpRequest;
-
-$ = undefined;
-jQuery = undefined;
-document = undefined;
-XMLHttpRequest = undefined;
+var appInit = require('../app_modules/appInit');
 
 describe("appInit", () => {
 

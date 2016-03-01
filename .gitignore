@@ -9,4 +9,4 @@
 /test/*.map
 /test/appInitTests.js
 /test/appProxyTests.js
-/app_modules/appInit.js
+
