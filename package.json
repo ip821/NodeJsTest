@@ -23,6 +23,7 @@
     "toolbar": false
   },
   "scripts": {
-    "start": "nodewebkit"
+    "start": "nodewebkit",
+    "test": "mocha --no-timeouts --reporter spec"
   }
 }

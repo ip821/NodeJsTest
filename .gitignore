@@ -6,3 +6,5 @@
 /app.js
 /app_modules/appProxy.js
 /app_modules/downloadManager.js
+/test/*.map
+/test/appInitTests.js
