@@ -2,6 +2,7 @@ var strUrl = 'http://oauth.vk.com/authorize?client_id=4225742&scope=8&redirect_u
 var strUrlApi = 'https://api.vk.com/method/';
 
 import appInit = require('./appInit');
+import _ = require('underscore');
 
 export function openLoginWindow(parentWindow, onClosedCallback) {
     var intervalId = parentWindow.setInterval(hashUpdate, 500);
@@ -45,7 +46,7 @@ export function openLoginWindow(parentWindow, onClosedCallback) {
     }
 }
 
-export function getAudioList(userId: string, accessToken: string, onSuccessCallback: (...args: any[]) => void, onErrorCallback: (...args: any[]) => void) {
+export function getAudioList(userId: string, accessToken: string, onSuccessCallback: (args: AudioListItem[]) => void, onErrorCallback: (...args: any[]) => void) {
     console.log('vkApi.getAudioList: userId=' + userId + 'accessToken=' + accessToken);
     var strUrl = strUrlApi + 'audio.get?' + $.param({
         uid: userId,
@@ -57,7 +58,19 @@ export function getAudioList(userId: string, accessToken: string, onSuccessCallb
         type: 'GET',
         url: strUrl,
         data: {},
-        success: (e) => { onSuccessCallback(e); },
+        success: (e) => { onSuccessCallback(conevrtVkAudioList(e.response)); },
         error: (e) => { onErrorCallback(e); }
     })
+}
+
+export interface AudioListItem{
+    aid: number;
+    artist: string;
+    title: string;
+    url: string;
+}
+
+function conevrtVkAudioList(audioList: any[]): AudioListItem[] {
+    var result = _.map(audioList, t => {return {aid: t.aid, artist: t.artist, title: t.title, url: t.url}});
+    return result;
 }

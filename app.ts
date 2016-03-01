@@ -2,6 +2,7 @@ import appInit = require('./app_modules/appInit');
 appInit.initJQuery(window, this);
 appInit.initXMLHttpRequest(this);
 
+import _ = require('underscore');
 import gui = require('nw.gui');
 import bootstrap = require("bootstrap");
 import fs = require('fs');
@@ -18,7 +19,7 @@ gui.Window.get().focus();
 
 appProxy.init(gui.App);
 
-var audioList = undefined;
+var audioList:vkApi.AudioListItem[] = undefined;
 
 $(document).ready(() => {
 
@@ -34,18 +35,18 @@ $(document).ready(() => {
             getAudioListError
         );
 
-        function getAudioListSuccess(e) {
+        function getAudioListSuccess(e: vkApi.AudioListItem[]) {
             console.log("Success!");
             console.log(e);
 
-            audioList = e.response;
-            e.response.forEach(function(item) {
+            audioList = e;
+            _.forEach(audioList, item => {
                 $('#tableBody').append(stringUtils.format('<tr class="audioRow" id="{0}">', item.aid) +
                     '<td>' + item.artist + '</td>' +
                     '<td>' + item.title + '</td>' +
                     '</tr>');
             });
-            $('#syncBadge').html(audioList.length);
+            $('#syncBadge').html(audioList.length.toString());
         }
 
         function getAudioListError(e) {
@@ -111,7 +112,7 @@ $(document).ready(() => {
         startDownload(audioList[index], downloadHandler, progressHandler);
     });
 
-    function startDownload(item, onFinishedCallback, progressCallback) {
+    function startDownload(item: vkApi.AudioListItem, onFinishedCallback, progressCallback) {
         var strHomeFolder = pathExtra.homedir();
         var strHomeFolderPath = path.join(strHomeFolder, 'Music');
         var strMusicPath = path.join(strHomeFolderPath, 'JsVkAudioSync');
