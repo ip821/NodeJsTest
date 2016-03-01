@@ -14,6 +14,6 @@ describe("appProxy", () => {
     it("appProxy.makeHttpRequest", () => {
         appProxy.init(new ProxyProviderDirect());
         var proxyDescriptor = appProxy.makeHttpRequest(url);
-        assert.equal();
+        //assert.equal();
     });
 });
