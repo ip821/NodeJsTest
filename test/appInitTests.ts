@@ -1,5 +1,5 @@
 import assert = require('assert');
-import appInit = require("../app_modules/appInit");
+import appInit = require('../app_modules/appInit');
 
 declare var $;
 declare var jQuery;
@@ -11,7 +11,7 @@ jQuery = undefined;
 document = undefined;
 XMLHttpRequest = undefined;
 
-describe("Simple test", () => {
+describe("appInit", () => {
 
     class Scope {
         $: any;
@@ -21,7 +21,9 @@ describe("Simple test", () => {
     it("appInit.initJQuery", () => {
         var window = {document: {}};
         var scope: Scope = { $: undefined, jQuery: undefined };
+        
         appInit.initJQuery(window, scope);
+        
         assert.notEqual(scope.$, undefined, "scope.$ should be defined");
         assert.notEqual(scope.jQuery, undefined, "scope.$ should be defined");
         

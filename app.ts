@@ -1,3 +1,5 @@
+/// <reference path="./app_modules/appInit.ts"/>
+
 import appInit = require('./app_modules/appInit');
 appInit.initJQuery(window, this);
 appInit.initXMLHttpRequest(this);
