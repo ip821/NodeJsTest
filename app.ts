@@ -2,8 +2,8 @@ var appInit = require('./app_modules/appInit');
 appInit.initJQuery(window, this);
 appInit.initXMLHttpRequest(this);
 
-import _ = require('underscore');
 import gui = require('nw.gui');
+import _ = require('underscore');
 import bootstrap = require("bootstrap");
 import fs = require('fs');
 import path = require('path');
@@ -12,6 +12,7 @@ import appProxy = require('./app_modules/appProxy');
 import stringUtils = require('./app_modules/strings');
 import vkApi = require('./app_modules/vkApi');
 import downloadManager = require('./app_modules/downloadManager');
+import appView = require("./appView");
 
 gui.Window.get().show();
 gui.Window.get().showDevTools();
@@ -19,7 +20,8 @@ gui.Window.get().focus();
 
 appProxy.init(gui.App);
 
-var audioList:vkApi.AudioListItem[] = undefined;
+var view = new appView.View();
+var audioList: vkApi.AudioListItem[] = undefined;
 
 $(document).ready(() => {
 
@@ -40,13 +42,7 @@ $(document).ready(() => {
             console.log(e);
 
             audioList = e;
-            _.forEach(audioList, item => {
-                $('#tableBody').append(stringUtils.format('<tr class="audioRow" id="{0}">', item.aid) +
-                    '<td>' + item.artist + '</td>' +
-                    '<td>' + item.title + '</td>' +
-                    '</tr>');
-            });
-            $('#syncBadge').html(audioList.length.toString());
+            view.fillTable(audioList);
         }
 
         function getAudioListError(e) {
@@ -60,10 +56,7 @@ $(document).ready(() => {
         var stop = false;
 
         function progressHandler(streamSize, dataLegth) {
-            var percentValue = Math.round((dataLegth / streamSize) * 100) + '%';
-            //console.log(stringUtils.format('PROGRESS: {0}, dataLegth: {1}, streamSize: {2}', percentValue, dataLegth, streamSize));
-            $('#progressSong').css('width', percentValue);
-            $('#progressSong').html(percentValue);
+            view.setStreamProgress(dataLegth, streamSize);
         }
 
         function downloadHandler(err) {
@@ -73,42 +66,25 @@ $(document).ready(() => {
             }
             if ((err && err.message) || stop) {
                 if (err) {
-                    $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).removeClass('success');
-                    $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).removeClass('warning');
-                    $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).addClass('error');
+                    view.setRowError(audioList[index].aid);
                     console.log(err.message);
                 }
-                $('#stopButton').addClass('hidden');
-                $('#syncButton').removeClass('hidden');
-                $('#progressContainer').addClass('hidden');
-                $('#progressSongContainer').addClass('hidden');
-                $('#audioName').addClass('hidden');
+                view.setIdleState();
                 return;
             }
-            $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).removeClass('error');
-            $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).removeClass('warning');
-            $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).addClass('success');
-            var percentValue = Math.floor((index / audioList.length) * 100) + '%';
-            $('#progress').html(percentValue);
-            $('#progress').css('width', percentValue);
-            $('#progressSong').css('width', 0);
+            view.setRowSuccess(audioList[index].aid);
+            view.setOverallProgress(index, audioList.length);
             index++;
-            $('#audioName').html(stringUtils.format('{0}-{1}.mp3', audioList[index].artist, audioList[index].title));
-            $(stringUtils.format('#{0}.audioRow', audioList[index].aid)).addClass('warning');
+            view.setOverallProgressDescription(stringUtils.format('{0}-{1}.mp3', audioList[index].artist, audioList[index].title));
+            view.setRowWarning(audioList[index].aid);
             startDownload(audioList[index], downloadHandler, progressHandler);
         };
 
-        $('#stopButton').removeClass('hidden');
-        $('#syncButton').addClass('hidden');
         $('#stopButton').click(function() {
             stop = true;
         });
 
-        $('#audioName').removeClass('hidden');
-        $('#progressContainer').removeClass('hidden');
-        $('#progressSongContainer').removeClass('hidden');
-        $('#progress').attr('aria-valuemax', audioList.length);
-        $('#progressSong').css('width', 0);
+        view.setRunningState(audioList.length);
         startDownload(audioList[index], downloadHandler, progressHandler);
     });
 
