@@ -13,5 +13,6 @@ gui.Window.get().focus();
 appProxy.init(gui.App);
 
 $(document).ready(() => {
-    appController.run();
+    var controller = new appController.Controller();
+    controller.run();
 });

@@ -8,8 +8,18 @@ export interface TableRow {
     title: string;
 }
 
+export interface ViewEventHandler {
+    onViewSyncClick();
+    onViewStopClick();
+}
+
 export class View {
-    fillTable(audioList: TableRow[]): void {
+    setEventHandler = (eventHandler: ViewEventHandler) => {
+        $("#syncButton").click(eventHandler.onViewSyncClick);
+        $("#stopButton").click(eventHandler.onViewStopClick);
+    }
+
+    fillTable = (audioList: TableRow[]) => {
         _.forEach(audioList, item => {
             $('#tableBody').append(stringUtils.format('<tr class="audioRow" id="{0}">', item.aid) +
                 '<td>' + item.artist + '</td>' +
@@ -19,7 +29,7 @@ export class View {
         $('#syncBadge').html(audioList.length.toString());
     }
 
-    setIdleState(): void {
+    setIdleState = () => {
         $('#stopButton').addClass('hidden');
         $('#syncButton').removeClass('hidden');
         $('#progressContainer').addClass('hidden');
@@ -27,7 +37,7 @@ export class View {
         $('#audioName').addClass('hidden');
     }
 
-    setRunningState(itemNumber: number): void {
+    setRunningState = (itemNumber: number) => {
         $('#stopButton').removeClass('hidden');
         $('#syncButton').addClass('hidden');
 
@@ -38,44 +48,36 @@ export class View {
         $('#progressSong').css('width', 0);
     }
 
-    setRowError(aid: number): void {
+    setRowError = (aid: number) => {
         $(stringUtils.format('#{0}.audioRow', aid)).removeClass('success');
         $(stringUtils.format('#{0}.audioRow', aid)).removeClass('warning');
         $(stringUtils.format('#{0}.audioRow', aid)).addClass('error');
     }
 
-    setRowSuccess(aid: number): void {
+    setRowSuccess = (aid: number) => {
         $(stringUtils.format('#{0}.audioRow', aid)).removeClass('error');
         $(stringUtils.format('#{0}.audioRow', aid)).removeClass('warning');
         $(stringUtils.format('#{0}.audioRow', aid)).addClass('success');
     }
 
-    setRowWarning(aid: number): void {
+    setRowWarning = (aid: number) => {
         $(stringUtils.format('#{0}.audioRow', aid)).addClass('warning');
     }
 
-    setStreamProgress(dataLegth: number, streamSize: number): void {
+    setStreamProgress = (dataLegth: number, streamSize: number) => {
         var percentValue = Math.round((dataLegth / streamSize) * 100) + '%';
         $('#progressSong').css('width', percentValue);
         $('#progressSong').html(percentValue);
     }
 
-    setOverallProgress(index: number, length: number): void {
+    setOverallProgress = (index: number, length: number) => {
         var percentValue = Math.floor((index / length) * 100) + '%';
         $('#progress').html(percentValue);
         $('#progress').css('width', percentValue);
         $('#progressSong').css('width', 0);
     }
 
-    setOverallProgressDescription(message: string): void {
+    setOverallProgressDescription = (message: string) => {
         $('#audioName').html(message);
-    }
-
-    getSyncButton(): JQuery {
-        return $('#syncButton');
-    }
-
-    getStopCommand(): JQuery {
-        return $('#stopButton');
     }
 }

@@ -45,7 +45,7 @@ export function openLoginWindow(parentWindow: Window, onClosedCallback: (userId:
     }
 }
 
-export function getAudioList(userId: string, accessToken: string, onSuccessCallback: (args: AudioListItem[]) => void, onErrorCallback: (...args: any[]) => void) {
+export function getAudioList(userId: string, accessToken: string, onSuccessCallback: (args: AudioListItem[]) => void, onErrorCallback: (e: any) => void) {
     console.log('vkApi.getAudioList: userId=' + userId + 'accessToken=' + accessToken);
     var strUrl = strUrlApi + 'audio.get?' + $.param({
         uid: userId,
