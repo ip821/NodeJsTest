@@ -46,16 +46,12 @@ export class Downloader implements DownloadManagerEventHandler {
         strFileName = strFileName.replace('/', '');
         var strFilePath = path.join(strMusicPath, strFileName);
 
-        fs.exists(strMusicPath, (exists) => {
-            if (!exists) {
-                fs.mkdir(strMusicPath, () => {
-                    this.downloadManager.download(item.url, strFilePath);
-                });
-                return;
-            }
+        var exists = fs.existsSync(strMusicPath);
+        if (!exists) {
+            fs.mkdirSync(strMusicPath);
+        }
 
-            this.downloadManager.download(item.url, strFilePath);
-        });
+        this.downloadManager.download(item.url, strFilePath);
     }
 
     onDownloadManagerProgress = (dataLength: number, streamSize: number) => {
