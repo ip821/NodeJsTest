@@ -51,7 +51,7 @@ export class Controller implements ViewEventHandler, DownloaderEventHandler {
             accessToken,
             (audioList: vkApi.AudioListItem[]) => {
                 this.audioList = audioList;
-                this.view.fillTable(audioList);
+                this.view.setModel(audioList);
             },
             (e) => {
                 console.log("Error!");

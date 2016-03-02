@@ -10,6 +10,7 @@ export interface ProxyDescriptor {
     host: string;
     port: string;
     path: string;
+    method: string;
 }
 
 export interface ProxyUrlProvider {
@@ -24,7 +25,8 @@ export function makeHttpRequest(url: string): ProxyDescriptor {
         return {
             host: parsedUrl.host,
             port: parsedUrl.port,
-            path: parsedUrl.path
+            path: parsedUrl.path,
+            method: undefined,
         };
     }
 
@@ -33,6 +35,7 @@ export function makeHttpRequest(url: string): ProxyDescriptor {
     return {
         host: parts[0],
         port: parts[1],
-        path: url
+        path: url,
+        method: undefined,
     };
 }

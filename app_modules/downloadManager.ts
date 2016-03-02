@@ -1,10 +1,11 @@
 import http = require('http');
 import fs = require('fs');
 import stringUtils = require('./strings');
+import appProxy = require("./appProxy");
 
 export interface DownloadManagerEventHandler {
-    onCompleted(err: any);
-    onProgress(dataLength: number, streamSize: number);
+    onDownloadManagerCompleted(err: any);
+    onDownloadManagerProgress(dataLength: number, streamSize: number);
 }
 
 export class DownloadManager {
@@ -14,14 +15,36 @@ export class DownloadManager {
         this.eventHandler = eventHandler;
     }
 
-    download = (appProxy, url, dest) => {
-        var _self = this;
+    downloadInternal = (url, dest, streamSize) => {
+        var dataLength = 0;        
+        var file = fs.createWriteStream(dest);
+        var request = http.get(appProxy.makeHttpRequest(url), (response) => {
+            response.on('data', (data) => {
+                file.write(data);
+                dataLength += data.length;
+                this.eventHandler.onDownloadManagerProgress(dataLength, streamSize);
+            })
+                .on('end', () => {
+                    file.end();
+                    file.close();
+                    console.log('Downloading DONE: ' + url);
+                    this.eventHandler.onDownloadManagerCompleted(undefined);
+                })
+                .on('error', (err) => {
+                    console.log('Downloading FAIL: ' + url);
+                    file.close();
+                    fs.unlink(dest);
+                    this.eventHandler.onDownloadManagerCompleted(err);
+                });
+        });
+    }
+
+    download = (url, dest) => {
         console.log('Downloading START: ' + url);
         var headerRequestOptions = appProxy.makeHttpRequest(url);
         headerRequestOptions.method = 'HEAD';
         var headerRequest = http.get(headerRequestOptions, (headersResponse) => {
             var streamSize = 0;
-            var dataLength = 0;
             if (headersResponse.headers) {
                 streamSize = parseInt(headersResponse.headers['content-length']);
                 fs.exists(dest, (exists) => {
@@ -32,42 +55,19 @@ export class DownloadManager {
                             headerRequest.end();
                             if (streamSize === fileSize) {
                                 console.log('Skipping ' + dest);
-                                _self.eventHandler.onCompleted(undefined);
+                                this.eventHandler.onDownloadManagerCompleted(undefined);
                                 return;
                             }
-                            downloadInternal();
+                            this.downloadInternal(url, dest, streamSize);
                         });
                         return;
                     }
-                    downloadInternal();
+                    this.downloadInternal(url, dest, streamSize);
                 });
                 return;
             }
 
-            downloadInternal();
-
-            function downloadInternal() {
-                var file = fs.createWriteStream(dest);
-                var request = http.get(appProxy.makeHttpRequest(url), (response) => {
-                    response.on('data', (data) => {
-                        file.write(data);
-                        dataLength += data.length;
-                        _self.eventHandler.onProgress(dataLength, streamSize);
-                    })
-                        .on('end', () => {
-                            file.end();
-                            file.close();
-                            console.log('Downloading DONE: ' + url);
-                            _self.eventHandler.onCompleted(undefined);
-                        })
-                        .on('error', (err) => {
-                            console.log('Downloading FAIL: ' + url);
-                            file.close();
-                            fs.unlink(dest);
-                            _self.eventHandler.onCompleted(err);
-                        });
-                });
-            }
+            this.downloadInternal(url, dest, streamSize);
         });
     }
 }

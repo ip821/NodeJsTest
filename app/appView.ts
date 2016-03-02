@@ -19,7 +19,7 @@ export class View {
         $("#stopButton").click(eventHandler.onViewStopClick);
     }
 
-    fillTable = (audioList: TableRow[]) => {
+    setModel = (audioList: TableRow[]) => {
         _.forEach(audioList, item => {
             $('#tableBody').append(stringUtils.format('<tr class="audioRow" id="{0}">', item.aid) +
                 '<td>' + item.artist + '</td>' +

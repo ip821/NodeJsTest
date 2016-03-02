@@ -38,20 +38,20 @@ export class Downloader implements DownloadManagerEventHandler {
         fs.exists(strMusicPath, (exists) => {
             if (!exists) {
                 fs.mkdir(strMusicPath, ()=> {
-                    this.downloadManager.download(appProxy, item.url, strFilePath);
+                    this.downloadManager.download(item.url, strFilePath);
                 });
                 return;
             }
 
-            this.downloadManager.download(appProxy, item.url, strFilePath);
+            this.downloadManager.download(item.url, strFilePath);
         });
     }
 
-    onProgress = (dataLength: number, streamSize: number) => {
+    onDownloadManagerProgress = (dataLength: number, streamSize: number) => {
         this.eventHandler.onDownloaderStreamProgress(dataLength, streamSize);
     }
 
-    onCompleted = (err: any) => {
+    onDownloadManagerCompleted = (err: any) => {
         if (this.audioList.length - 1 === this.index) {
             this.stop = true;
         }
