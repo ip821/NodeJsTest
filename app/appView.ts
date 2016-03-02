@@ -1,10 +1,15 @@
-import vkApi = require("./app_modules/vkApi");
-import stringUtils = require('./app_modules/strings');
+import stringUtils = require('../app_modules/strings');
 import _ = require('underscore');
 import $ = require('jquery');
 
+export interface TableRow {
+    aid: number;
+    artist: string;
+    title: string;
+}
+
 export class View {
-    fillTable(audioList: vkApi.AudioListItem[]): void {
+    fillTable(audioList: TableRow[]): void {
         _.forEach(audioList, item => {
             $('#tableBody').append(stringUtils.format('<tr class="audioRow" id="{0}">', item.aid) +
                 '<td>' + item.artist + '</td>' +
@@ -61,8 +66,16 @@ export class View {
         $('#progress').css('width', percentValue);
         $('#progressSong').css('width', 0);
     }
-    
-    setOverallProgressDescription(message: string): void{
+
+    setOverallProgressDescription(message: string): void {
         $('#audioName').html(message);
+    }
+
+    getSyncButton(): JQuery {
+        return $('#syncButton');
+    }
+
+    getStopCommand(): JQuery {
+        return $('#stopButton');
     }
 }

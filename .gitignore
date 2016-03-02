@@ -10,3 +10,8 @@
 /test/appInitTests.js
 /test/appProxyTests.js
 
+/app/appController.js
+/app/appController.js.map
+/app/appView.js
+/app/appView.js.map
+/app/*.map
