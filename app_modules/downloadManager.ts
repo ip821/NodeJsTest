@@ -32,9 +32,6 @@ export class DownloadManager {
                             headerRequest.end();
                             if (streamSize === fileSize) {
                                 console.log('Skipping ' + dest);
-                                console.log(_self);
-                                console.log(_self.eventHandler);
-                                console.log(_self.eventHandler.onCompleted);
                                 _self.eventHandler.onCompleted(undefined);
                                 return;
                             }

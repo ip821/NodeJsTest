@@ -16,7 +16,6 @@ export class Controller implements ViewEventHandler, DownloaderEventHandler {
     }
 
     onViewSyncClick = () => {
-        console.log(this);
         this.view.setRunningState(this.audioList.length);
         this.downloader.startDownload(this.audioList);
     }
@@ -46,10 +45,7 @@ export class Controller implements ViewEventHandler, DownloaderEventHandler {
         this.view.setIdleState();
     }
 
-    getAudioListSuccess = (e: vkApi.AudioListItem[]) => {
-    }
-
-    initAudioList = (userId, accessToken) => {
+    private initAudioList = (userId, accessToken) => {
         vkApi.getAudioList(
             userId,
             accessToken,

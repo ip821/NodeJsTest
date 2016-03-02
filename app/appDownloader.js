@@ -44,10 +44,6 @@ var Downloader = (function () {
                 _this.eventHandler.onDownloaderStop();
                 return;
             }
-            console.log("onCompleted");
-            console.log(_this);
-            console.log(_this.eventHandler);
-            console.log(_this.eventHandler.onDownloaderOverallProgress);
             _this.eventHandler.onDownloaderOverallProgress(_this.index, _this.index + 1);
             _this.index++;
             _this.startDownloadItem(_this.audioList[_this.index]);

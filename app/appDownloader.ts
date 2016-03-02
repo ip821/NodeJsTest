@@ -63,11 +63,7 @@ export class Downloader implements DownloadManagerEventHandler {
             this.eventHandler.onDownloaderStop();
             return;
         }
-        console.log("onCompleted");
-        console.log(this);
-        console.log(this.eventHandler);
-        console.log(this.eventHandler.onDownloaderOverallProgress);
-        
+       
         this.eventHandler.onDownloaderOverallProgress(this.index, this.index + 1);
         this.index++;
         this.startDownloadItem(this.audioList[this.index]);
