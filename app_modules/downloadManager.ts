@@ -36,6 +36,7 @@ export class DownloadManager {
                     }
                 }
             }
+            
             var dataLength = 0;
             var file = fs.createWriteStream(dest);
             var request = http.get(appProxy.makeHttpRequest(url), (response) => {

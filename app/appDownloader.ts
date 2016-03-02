@@ -27,17 +27,28 @@ export class Downloader implements DownloadManagerEventHandler {
         this.eventHandler = eventHandler;
     }
 
-    startDownloadItem = (item: AudioListItem) => {
+    startDownload = (items: AudioListItem[]) => {
+        this.index = 0;
+        this.stop = false;
+        this.audioList = items;
+        this.startDownloadItem(this.audioList[this.index]);
+    }
+
+    stopDownload = () => {
+        this.stop = true;
+    }
+
+    private startDownloadItem = (item: AudioListItem) => {
         var strHomeFolder = pathExtra.homedir();
         var strHomeFolderPath = path.join(strHomeFolder, 'Music');
         var strMusicPath = path.join(strHomeFolderPath, 'JsVkAudioSync');
         var strFileName = item.artist + "-" + item.title + '.mp3';
         strFileName = strFileName.replace('/', '');
         var strFilePath = path.join(strMusicPath, strFileName);
-        
+
         fs.exists(strMusicPath, (exists) => {
             if (!exists) {
-                fs.mkdir(strMusicPath, ()=> {
+                fs.mkdir(strMusicPath, () => {
                     this.downloadManager.download(item.url, strFilePath);
                 });
                 return;
@@ -63,21 +74,10 @@ export class Downloader implements DownloadManagerEventHandler {
             this.eventHandler.onDownloaderStop();
             return;
         }
-       
+
         this.eventHandler.onDownloaderOverallProgress(this.index, this.index + 1);
         this.index++;
         this.startDownloadItem(this.audioList[this.index]);
     };
-
-    startDownload = (items: AudioListItem[]) => {
-        this.index = 0;
-        this.stop = false;
-        this.audioList = items;
-        this.startDownloadItem(this.audioList[this.index]);
-    }
-
-    stopDownload = () => {
-        this.stop = true;
-    }
 }
 
