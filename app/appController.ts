@@ -39,9 +39,15 @@ export function run() {
         }
     }
 
+    var stop = false;
+
+    view.getStopCommand().click(() => {
+        stop = true;
+    });
+
+
     view.getSyncButton().click(() => {
         var index = 0;
-        var stop = false;
 
         function progressHandler(streamSize, dataLegth) {
             view.setStreamProgress(dataLegth, streamSize);
@@ -67,10 +73,6 @@ export function run() {
             view.setRowWarning(audioList[index].aid);
             startDownload(audioList[index], downloadHandler, progressHandler);
         };
-
-        view.getStopCommand().click(function() {
-            stop = true;
-        });
 
         view.setRunningState(audioList.length);
         startDownload(audioList[index], downloadHandler, progressHandler);
