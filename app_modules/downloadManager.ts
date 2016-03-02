@@ -36,15 +36,16 @@ export class DownloadManager {
                     }
                 }
             }
-            
+
             var dataLength = 0;
             var file = fs.createWriteStream(dest);
             var request = http.get(appProxy.makeHttpRequest(url), (response) => {
-                response.on('data', (data) => {
-                    file.write(data);
-                    dataLength += data.length;
-                    this.eventHandler.onDownloadManagerProgress(dataLength, streamSize);
-                })
+                response
+                    .on('data', (data) => {
+                        file.write(data);
+                        dataLength += data.length;
+                        this.eventHandler.onDownloadManagerProgress(dataLength, streamSize);
+                    })
                     .on('end', () => {
                         file.end();
                         file.close();
