@@ -3,15 +3,15 @@ import fs = require('fs');
 import stringUtils = require('./strings');
 import appProxy = require("./proxy");
 
-export interface DownloadManagerEventHandler {
+export interface IDownloadManagerEventHandler {
     onDownloadManagerCompleted(err: any);
     onDownloadManagerProgress(dataLength: number, streamSize: number);
 }
 
 export class DownloadManager {
-    eventHandler: DownloadManagerEventHandler;
+    eventHandler: IDownloadManagerEventHandler;
 
-    setEventHandler (eventHandler: DownloadManagerEventHandler) {
+    setEventHandler (eventHandler: IDownloadManagerEventHandler) {
         this.eventHandler = eventHandler;
     }
 

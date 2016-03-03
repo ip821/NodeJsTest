@@ -2,7 +2,7 @@ import pathExtra = require('path-extra');
 import fs = require('fs');
 import path = require('path');
 import proxy = require('../app_modules/proxy');
-import {DownloadManager, DownloadManagerEventHandler} from '../app_modules/download_manager';
+import {DownloadManager, IDownloadManagerEventHandler} from '../app_modules/download_manager';
 
 export interface IListDownloaderEventHandler {
     onDownloaderStop();
@@ -11,18 +11,18 @@ export interface IListDownloaderEventHandler {
     onDownloaderOverallProgress(completedIndex: number, currentIndex: number);
 }
 
-export interface DownloadItem{
+export interface IDownloadItem{
     aid: number;
     artist: string;
     title: string;
     url: string;
 }
 
-export class ListDownloader implements DownloadManagerEventHandler {
+export class ListDownloader implements IDownloadManagerEventHandler {
     stop = false;
     eventHandler: IListDownloaderEventHandler;
     index = 0;
-    audioList: DownloadItem[];
+    audioList: IDownloadItem[];
     downloadManager: DownloadManager = new DownloadManager();
 
     constructor() {
@@ -33,7 +33,7 @@ export class ListDownloader implements DownloadManagerEventHandler {
         this.eventHandler = eventHandler;
     }
 
-    startDownload (items: DownloadItem[]) {
+    startDownload (items: IDownloadItem[]) {
         this.index = 0;
         this.stop = false;
         this.audioList = items;
@@ -44,7 +44,7 @@ export class ListDownloader implements DownloadManagerEventHandler {
         this.stop = true;
     }
 
-    private startDownloadItem = (item: DownloadItem) => {
+    private startDownloadItem = (item: IDownloadItem) => {
         var strHomeFolder = pathExtra.homedir();
         var strHomeFolderPath = path.join(strHomeFolder, 'Music');
         var strMusicPath = path.join(strHomeFolderPath, 'JsVkAudioSync');
