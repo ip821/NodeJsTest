@@ -9,7 +9,6 @@ export interface IController {
     run();
 }
 
-@Inject("IView", "IListDownloader")
 export class Controller implements IViewEventHandler, IListDownloaderEventHandler, IController {
     downloader: IListDownloader;
     view: IView;

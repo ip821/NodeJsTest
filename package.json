@@ -1,23 +1,25 @@
 {
-    "name": "NodejsConsoleApp1",
-    "version": "0.0.0",
-    "description": "NodejsConsoleApp1",
-    "main": "boot.js",
-    "author": {
-        "name": "ip",
-        "email": ""
-    },
+  "name": "NodejsConsoleApp1",
+  "version": "0.0.0",
+  "description": "NodejsConsoleApp1",
+  "main": "boot.js",
+  "author": {
+    "name": "ip",
+    "email": ""
+  },
   "dependencies": {
-        "electron-prebuilt": "^0.36.0",
-        "bootstrap": "^3.3.4",
-        "jquery": "^2.1.4",
-        "mocha": "^2.4.5",
-        "path-extra": "^3.0.0",
-        "underscore": "^1.8.3",
-        "xmlhttprequest": "1.7.0"
-    },
-    "scripts": {
-        "start": "electron boot.js",
-        "test": "./node_modules/.bin/mocha --no-timeouts --reporter spec"
-    }
+    "bootstrap": "^3.3.4",
+    "electron-prebuilt": "^0.36.0",
+    "electron-proxy-agent": "^1.0.2",
+    "jquery": "^2.1.4",
+    "mocha": "^2.4.5",
+    "path-extra": "^3.0.0",
+    "session": "^0.1.0",
+    "underscore": "^1.8.3",
+    "xmlhttprequest": "1.7.0"
+  },
+  "scripts": {
+    "start": "electron boot.js",
+    "test": "./node_modules/.bin/mocha --no-timeouts --reporter spec"
+  }
 }

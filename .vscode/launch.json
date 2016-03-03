@@ -9,9 +9,9 @@
             "args": [],
             "cwd": ".",
             // next line is very important
-            "runtimeExecutable": "node_modules/electron-prebuilt/dist/electron.exe",
+            "runtimeExecutable": "node_modules/.bin/electron",
             "runtimeArguments": [
-                "-debug=5858"
+                ""
             ],
             "env": {},
             "sourceMaps": false
