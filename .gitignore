@@ -21,3 +21,5 @@
 /app/view.js
 /app_modules/download_manager.js
 /app_modules/proxy.js
+/test/init_tests.js
+/test/proxy_tests.js

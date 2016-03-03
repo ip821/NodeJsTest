@@ -1,7 +1,7 @@
 import _ = require('underscore');
 import bootstrap = require("bootstrap");
 import stringUtils = require('../app_modules/strings');
-import {VkApi, AudioListItem} from '../app_modules/vkApi';
+import {VkApi, AudioListItem} from '../app_modules/vkapi';
 import {View, ViewEventHandler} from "../app/view";
 import {ListDownloader, ListDownloaderEventHandler} from "../app/list_downloader";
 
