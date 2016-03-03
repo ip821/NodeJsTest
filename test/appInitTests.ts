@@ -1,18 +1,18 @@
 import assert = require('assert');
-var appInit = require('../app_modules/appInit');
+var init = require('../app_modules/init');
 
-describe("appInit", () => {
+describe("init", () => {
 
     class Scope {
         $: any;
         jQuery: any;
     };
 
-    it("appInit.initJQuery", () => {
+    it("init.initJQuery", () => {
         var window = {document: {}};
         var scope: Scope = { $: undefined, jQuery: undefined };
         
-        appInit.initJQuery(window, scope);
+        init.initJQuery(window, scope);
         
         assert.notEqual(scope.$, undefined, "scope.$ should be defined");
         assert.notEqual(scope.jQuery, undefined, "scope.$ should be defined");
@@ -22,10 +22,10 @@ describe("appInit", () => {
         assert.notEqual(document, undefined, "document should be defined");
     });
 
-    it("appInit.initXMLHttpRequest", () => {
+    it("init.initXMLHttpRequest", () => {
         var window = {document: {}};
         var scope: Scope = { $: {support:{}, ajaxSettings: {}}, jQuery: undefined };
-        appInit.initXMLHttpRequest(scope);
+        init.initXMLHttpRequest(scope);
         assert.equal(scope.$.support.cors, true, "'scope.$.support.cors' should be true");
         assert.notEqual(scope.$.ajaxSettings.xhr, undefined, "'scope.$.ajaxSettings.xhr' should be defined");
     });

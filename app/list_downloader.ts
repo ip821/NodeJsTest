@@ -1,20 +1,20 @@
 import pathExtra = require('path-extra');
 import fs = require('fs');
 import path = require('path');
-import {DownloadManager, DownloadManagerEventHandler} from '../app_modules/downloadManager';
-import appProxy = require('../app_modules/appProxy');
+import proxy = require('../app_modules/proxy');
 import {AudioListItem} from '../app_modules/vkApi';
+import {DownloadManager, DownloadManagerEventHandler} from '../app_modules/download_manager';
 
-export interface DownloaderEventHandler {
+export interface ListDownloaderEventHandler {
     onDownloaderStop();
     onDownloaderError(index: number);
     onDownloaderStreamProgress(dataLegth: number, streamSize: number);
     onDownloaderOverallProgress(completedIndex: number, currentIndex: number);
 }
 
-export class Downloader implements DownloadManagerEventHandler {
+export class ListDownloader implements DownloadManagerEventHandler {
     stop = false;
-    eventHandler: DownloaderEventHandler;
+    eventHandler: ListDownloaderEventHandler;
     index = 0;
     audioList: AudioListItem[];
     downloadManager: DownloadManager = new DownloadManager();
@@ -23,7 +23,7 @@ export class Downloader implements DownloadManagerEventHandler {
         this.downloadManager.setEventHandler(this);
     }
 
-    setEventHandler (eventHandler: DownloaderEventHandler) {
+    setEventHandler (eventHandler: ListDownloaderEventHandler) {
         this.eventHandler = eventHandler;
     }
 

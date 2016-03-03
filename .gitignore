@@ -16,3 +16,8 @@
 /app/appView.js.map
 /app/*.map
 /app/appDownloader.js
+/app/controller.js
+/app/list_downloader.js
+/app/view.js
+/app_modules/download_manager.js
+/app_modules/proxy.js

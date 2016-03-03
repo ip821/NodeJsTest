@@ -1,14 +1,15 @@
 import _ = require('underscore');
 import bootstrap = require("bootstrap");
 import stringUtils = require('../app_modules/strings');
-import vkApi = require('../app_modules/vkApi');
-import {View, ViewEventHandler} from "../app/appView";
-import {Downloader, DownloaderEventHandler} from "../app/appDownloader";
+import {VkApi, AudioListItem} from '../app_modules/vkApi';
+import {View, ViewEventHandler} from "../app/view";
+import {ListDownloader, ListDownloaderEventHandler} from "../app/list_downloader";
 
-export class Controller implements ViewEventHandler, DownloaderEventHandler {
-    downloader: Downloader = new Downloader();
+export class Controller implements ViewEventHandler, ListDownloaderEventHandler {
+    downloader: ListDownloader = new ListDownloader();
     view: View = new View();
-    audioList: vkApi.AudioListItem[] = null;
+    audioList: AudioListItem[] = null;
+    vkApi: VkApi = new VkApi();
 
     constructor() {
         this.view.setEventHandler(this);
@@ -45,11 +46,11 @@ export class Controller implements ViewEventHandler, DownloaderEventHandler {
         this.view.setIdleState();
     }
 
-    private initAudioList = (userId, accessToken) => {
-        vkApi.getAudioList(
+    private initAudioList (userId, accessToken) {
+        this.vkApi.getAudioList(
             userId,
             accessToken,
-            (audioList: vkApi.AudioListItem[]) => {
+            (audioList: AudioListItem[]) => {
                 this.audioList = audioList;
                 this.view.setModel(audioList);
             },
@@ -61,7 +62,7 @@ export class Controller implements ViewEventHandler, DownloaderEventHandler {
     }
 
     run () {
-        vkApi.openLoginWindow(window, (userId, accessToken) => {
+        this.vkApi.openLoginWindow(window, (userId, accessToken) => {
             this.initAudioList(userId, accessToken);
         });
     }

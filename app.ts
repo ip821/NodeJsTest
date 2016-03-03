@@ -1,10 +1,10 @@
 import gui = require('nw.gui');
-import appController = require("./app/appController");
-import appProxy = require('./app_modules/appProxy');
-var appInit = require('./app_modules/appInit');
+import appController = require("./app/controller");
+import appProxy = require('./app_modules/proxy');
+var init = require('./app_modules/init');
 
-appInit.initJQuery(window, this);
-appInit.initXMLHttpRequest(this);
+init.initJQuery(window, this);
+init.initXMLHttpRequest(this);
 
 gui.Window.get().show();
 gui.Window.get().showDevTools();

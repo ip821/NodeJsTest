@@ -1,16 +1,16 @@
 import assert = require('assert');
-import appProxy = require("../app_modules/appProxy");
+import proxy = require("../app_modules/proxy");
 import strings = require('../app_modules/strings');
 
 describe("appProxy", () => {
 
-    class ProxyProviderDirect implements appProxy.ProxyUrlProvider {
+    class ProxyProviderDirect implements proxy.ProxyUrlProvider {
         getProxyForURL(url: string) {
             return "DIRECT";
         };
     }
 
-    class ProxyProviderProxy implements appProxy.ProxyUrlProvider {
+    class ProxyProviderProxy implements proxy.ProxyUrlProvider {
         static host: string = "127.0.0.1";
         static port: string = "3128";
 
@@ -22,9 +22,9 @@ describe("appProxy", () => {
     const url: string = "http://localhost";
 
     it("appProxy.makeHttpRequest - DIRECT", () => {
-        appProxy.init(new ProxyProviderDirect());
+        proxy.init(new ProxyProviderDirect());
         
-        var proxyDescriptor = appProxy.makeHttpRequest(url);
+        var proxyDescriptor = proxy.makeHttpRequest(url);
         
         assert.equal(proxyDescriptor.host, "localhost", "proxyDescriptor.host");
         assert.equal(proxyDescriptor.path, "/", "proxyDescriptor.path");
@@ -32,9 +32,9 @@ describe("appProxy", () => {
     });
 
     it("appProxy.makeHttpRequest - PROXY", () => {
-        appProxy.init(new ProxyProviderProxy());
+        proxy.init(new ProxyProviderProxy());
         
-        var proxyDescriptor = appProxy.makeHttpRequest(url);
+        var proxyDescriptor = proxy.makeHttpRequest(url);
         
         assert.equal(proxyDescriptor.host, ProxyProviderProxy.host, "proxyDescriptor.host");
         assert.equal(proxyDescriptor.path, url, "proxyDescriptor.path");

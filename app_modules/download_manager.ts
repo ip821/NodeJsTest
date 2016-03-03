@@ -1,7 +1,7 @@
 import http = require('http');
 import fs = require('fs');
 import stringUtils = require('./strings');
-import appProxy = require("./appProxy");
+import appProxy = require("./proxy");
 
 export interface DownloadManagerEventHandler {
     onDownloadManagerCompleted(err: any);
