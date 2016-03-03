@@ -1,11 +1,10 @@
 import $ = require('jquery');
 import _ = require('underscore');
-import electron = require('electron');
 
 var strUrl = 'http://oauth.vk.com/authorize?client_id=4225742&scope=8&redirect_uri=http://oauth.vk.com/blank.html&display=wap&response_type=token';
 var strUrlApi = 'https://api.vk.com/method/';
 
-export interface AudioListItem {
+export interface IAudioListItem {
     aid: number;
     artist: string;
     title: string;
@@ -14,6 +13,7 @@ export interface AudioListItem {
 
 export class VkApi {
     openLoginWindow(parentWindow: Window, onClosedCallback: (userId: string, accessToken: string) => void) {
+        var electron = require('electron');
         var loginWindow = new electron.remote.BrowserWindow({ height: 400, width: 300 });
         loginWindow.loadURL(strUrl);
         loginWindow.on("closed", () => {
@@ -50,12 +50,12 @@ export class VkApi {
         });
     }
 
-    private conevrtVkAudioList(audioList: any[]): AudioListItem[] {
+    private conevrtVkAudioList(audioList: any[]): IAudioListItem[] {
         var result = _.map(audioList, t => { return { aid: t.aid, artist: t.artist, title: t.title, url: t.url } });
         return result;
     }
 
-    getAudioList(userId: string, accessToken: string, onSuccessCallback: (args: AudioListItem[]) => void, onErrorCallback: (e: any) => void) {
+    getAudioList(userId: string, accessToken: string, onSuccessCallback: (args: IAudioListItem[]) => void, onErrorCallback: (e: any) => void) {
         console.log('vkApi.getAudioList: userId=' + userId + 'accessToken=' + accessToken);
         var strUrl = strUrlApi + 'audio.get?' + $.param({
             uid: userId,
