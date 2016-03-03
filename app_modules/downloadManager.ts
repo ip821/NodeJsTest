@@ -11,11 +11,11 @@ export interface DownloadManagerEventHandler {
 export class DownloadManager {
     eventHandler: DownloadManagerEventHandler;
 
-    setEventHandler = (eventHandler: DownloadManagerEventHandler) => {
+    setEventHandler (eventHandler: DownloadManagerEventHandler) {
         this.eventHandler = eventHandler;
     }
 
-    download = (url, dest) => {
+    download (url, dest) {
         console.log('Downloading START: ' + url);
         var headerRequestOptions = appProxy.makeHttpRequest(url);
         headerRequestOptions.method = 'HEAD';

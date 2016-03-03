@@ -60,7 +60,7 @@ export class Controller implements ViewEventHandler, DownloaderEventHandler {
         );
     }
 
-    run = () => {
+    run () {
         vkApi.openLoginWindow(window, (userId, accessToken) => {
             this.initAudioList(userId, accessToken);
         });

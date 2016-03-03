@@ -23,18 +23,18 @@ export class Downloader implements DownloadManagerEventHandler {
         this.downloadManager.setEventHandler(this);
     }
 
-    setEventHandler = (eventHandler: DownloaderEventHandler) => {
+    setEventHandler (eventHandler: DownloaderEventHandler) {
         this.eventHandler = eventHandler;
     }
 
-    startDownload = (items: AudioListItem[]) => {
+    startDownload (items: AudioListItem[]) {
         this.index = 0;
         this.stop = false;
         this.audioList = items;
         this.startDownloadItem(this.audioList[this.index]);
     }
 
-    stopDownload = () => {
+    stopDownload () {
         this.stop = true;
     }
 
