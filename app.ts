@@ -6,9 +6,9 @@ var init = require('./app_modules/init');
 init.initJQuery(window, this);
 init.initXMLHttpRequest(this);
 
-gui.Window.get().show();
-gui.Window.get().showDevTools();
-gui.Window.get().focus();
+// gui.Window.get().show();
+// gui.Window.get().showDevTools();
+// gui.Window.get().focus();
 
 proxy.init(gui.App);
 
