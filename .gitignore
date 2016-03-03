@@ -23,3 +23,4 @@
 /app_modules/proxy.js
 /test/init_tests.js
 /test/proxy_tests.js
+/test/strings_tests.js
