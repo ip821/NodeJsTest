@@ -1,10 +1,6 @@
 import urlUtils = require('url');
-
-var app: IProxyUrlProvider;
-
-export function init(app: IProxyUrlProvider) {
-    this.app = app;
-}
+var electronProxyAgent = require('electron-proxy-agent');
+var session = require('session').defaultSession;
 
 export interface ProxyDescriptor {
     host: string;
@@ -14,16 +10,9 @@ export interface ProxyDescriptor {
     agent: any;
 }
 
-export interface IProxyUrlProvider {
-    getProxyForURL(url: string): string;
-}
-
 export function makeHttpRequest(url: string): ProxyDescriptor {
     var parsedUrl = urlUtils.parse(url);
-
-    var ElectronProxyAgent = require('electron-proxy-agent');
-    var session = require('session').defaultSession;
-    var agent = new ElectronProxyAgent(session);
+    var agent = new electronProxyAgent(session);
 
     return {
         host: parsedUrl.host,

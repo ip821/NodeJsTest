@@ -14,7 +14,7 @@ export interface AudioListItem {
 
 export class VkApi {
     openLoginWindow(parentWindow: Window, onClosedCallback: (userId: string, accessToken: string) => void) {
-        var loginWindow = new electron.remote.BrowserWindow({ height: 200, width: 100 });//parentWindow.open(strUrl, "Login");
+        var loginWindow = new electron.remote.BrowserWindow({ height: 200, width: 100 });
         loginWindow.loadURL(strUrl);
         loginWindow.on("closed", () => {
             console.log("userId: " + userId);
