@@ -5,8 +5,6 @@ import electron = require('electron');
 var strUrl = 'http://oauth.vk.com/authorize?client_id=4225742&scope=8&redirect_uri=http://oauth.vk.com/blank.html&display=wap&response_type=token';
 var strUrlApi = 'https://api.vk.com/method/';
 
-var init = require('./init');
-
 export interface AudioListItem {
     aid: number;
     artist: string;
