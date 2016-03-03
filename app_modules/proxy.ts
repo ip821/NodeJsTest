@@ -18,7 +18,7 @@ export interface ProxyUrlProvider {
 }
 
 export function makeHttpRequest(url: string): ProxyDescriptor {
-    var strProxy = this.app.getProxyForURL(url);
+    var strProxy = "DIRECT";//this.app.getProxyForURL(url);
     console.log('Proxy info:' + strProxy);
     if (strProxy === 'DIRECT') {
         var parsedUrl = urlUtils.parse(url);
