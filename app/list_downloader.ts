@@ -4,7 +4,7 @@ import path = require('path');
 import proxy = require('../app_modules/proxy');
 import {DownloadManager, DownloadManagerEventHandler} from '../app_modules/download_manager';
 
-export interface ListDownloaderEventHandler {
+export interface IListDownloaderEventHandler {
     onDownloaderStop();
     onDownloaderError(index: number);
     onDownloaderStreamProgress(dataLegth: number, streamSize: number);
@@ -20,7 +20,7 @@ export interface DownloadItem{
 
 export class ListDownloader implements DownloadManagerEventHandler {
     stop = false;
-    eventHandler: ListDownloaderEventHandler;
+    eventHandler: IListDownloaderEventHandler;
     index = 0;
     audioList: DownloadItem[];
     downloadManager: DownloadManager = new DownloadManager();
@@ -29,7 +29,7 @@ export class ListDownloader implements DownloadManagerEventHandler {
         this.downloadManager.setEventHandler(this);
     }
 
-    setEventHandler (eventHandler: ListDownloaderEventHandler) {
+    setEventHandler (eventHandler: IListDownloaderEventHandler) {
         this.eventHandler = eventHandler;
     }
 
