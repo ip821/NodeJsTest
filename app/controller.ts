@@ -1,18 +1,25 @@
 import _ = require('underscore');
-import Deps = require('ts-dependency-injection');
+import { Inject } from "inversify";
 import stringUtils = require('../app_modules/strings');
 import {VkApi, AudioListItem} from '../app_modules/vkapi';
-import {View, IViewEventHandler} from "../app/view";
-import {IListDownloaderEventHandler, ListDownloader} from "../app/list_downloader";
+import {View, IViewEventHandler, IView} from "../app/view";
+import {IListDownloaderEventHandler, IListDownloader} from "../app/list_downloader";
 
-export class Controller implements IViewEventHandler, IListDownloaderEventHandler {
-    @Deps.Injection(ListDownloader)
-    downloader: ListDownloader;
-    view: View = new View();
+export interface IController {
+    run();
+}
+
+@Inject("IView", "IListDownloader")
+export class Controller implements IViewEventHandler, IListDownloaderEventHandler, IController {
+    downloader: IListDownloader;
+    view: IView;
     audioList: AudioListItem[] = null;
     vkApi: VkApi = new VkApi();
 
-    constructor() {
+    constructor(view: IView, listDownloader: IListDownloader) {
+        this.downloader = listDownloader;
+        this.view = view;
+        
         this.view.setEventHandler(this);
         this.downloader.setEventHandler(this);
     }

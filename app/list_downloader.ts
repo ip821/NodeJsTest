@@ -18,7 +18,13 @@ export interface IDownloadItem{
     url: string;
 }
 
-export class ListDownloader implements IDownloadManagerEventHandler {
+export interface IListDownloader {
+    setEventHandler (eventHandler: IListDownloaderEventHandler);
+    startDownload (items: IDownloadItem[]);
+    stopDownload ();
+}
+
+export class ListDownloader implements IDownloadManagerEventHandler, IListDownloader {
     stop = false;
     eventHandler: IListDownloaderEventHandler;
     index = 0;

@@ -1,13 +1,14 @@
-import {Controller} from "./app/controller";
-import {ListDownloader} from "./app/list_downloader";
-import Deps = require('ts-dependency-injection');
+import {IController, Controller} from "./app/controller";
+import { Binding, Kernel, BindingScope } from "inversify";
+import {IListDownloader, ListDownloader} from "./app/list_downloader";
+import {IView, View} from "./app/view";
 
-var container = new Deps.Context();
-container.addValue(Controller);
-container.addValue(ListDownloader);
-container.resolve();
+var kernel = new Kernel();
+kernel.bind(new Binding<IView>("IView", View));
+kernel.bind(new Binding<IListDownloader>("IListDownloader", ListDownloader));
+kernel.bind(new Binding<IController>("IController", Controller));
 
 $(document).ready(() => {
-    var controller = new Controller();
+    var controller = kernel.get<IController>("IController");
     controller.run();
 });
