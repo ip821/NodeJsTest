@@ -1,6 +1,7 @@
 'use strict';
 
 const electron = require('electron');
+const _ = require("underscore");
 // Module to control application life.
 const app = electron.app;
 // Module to create native browser window.
@@ -15,10 +16,12 @@ function createWindow() {
     mainWindow = new BrowserWindow({ width: 500, height: 500, maximized: true });
     // and load the index.html of the app.
     mainWindow.loadURL('file://' + __dirname + '/index.html');
-    mainWindow.maximize();
-    
-    // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+
+    if (_.contains(process.argv, "--debug_mode")) {
+        mainWindow.maximize();
+        mainWindow.webContents.openDevTools();
+    }
+
     mainWindow.focus();
 
     // Emitted when the window is closed.
@@ -39,7 +42,7 @@ app.on('window-all-closed', function () {
     // // On OS X it is common for applications and their menu bar
     // // to stay active until the user quits explicitly with Cmd + Q
     // if (process.platform !== 'darwin') {
-         app.quit();
+    app.quit();
     // }
 });
 

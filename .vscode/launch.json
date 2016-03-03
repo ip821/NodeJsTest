@@ -6,7 +6,7 @@
             "type": "node",
             "program": "boot.js", // important
             "stopOnEntry": false,
-            "args": [],
+            "args": ["--debug_mode"],
             "cwd": ".",
             // next line is very important
             "runtimeExecutable": "node_modules/.bin/electron",
