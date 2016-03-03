@@ -1,8 +1,8 @@
 import urlUtils = require('url');
 
-var app: ProxyUrlProvider;
+var app: IProxyUrlProvider;
 
-export function init(app: ProxyUrlProvider) {
+export function init(app: IProxyUrlProvider) {
     this.app = app;
 }
 
@@ -11,31 +11,25 @@ export interface ProxyDescriptor {
     port: string;
     path: string;
     method: string;
+    agent: any;
 }
 
-export interface ProxyUrlProvider {
-    getProxyForURL(url: string): void;
+export interface IProxyUrlProvider {
+    getProxyForURL(url: string): string;
 }
 
 export function makeHttpRequest(url: string): ProxyDescriptor {
-    var strProxy = "DIRECT";//this.app.getProxyForURL(url);
-    console.log('Proxy info:' + strProxy);
-    if (strProxy === 'DIRECT') {
-        var parsedUrl = urlUtils.parse(url);
-        return {
-            host: parsedUrl.host,
-            port: parsedUrl.port,
-            path: parsedUrl.path,
-            method: undefined,
-        };
-    }
+    var parsedUrl = urlUtils.parse(url);
 
-    var strProxy = strProxy.replace('PROXY ', '');
-    var parts = strProxy.split(':');
+    var ElectronProxyAgent = require('electron-proxy-agent');
+    var session = require('session').defaultSession;
+    var agent = new ElectronProxyAgent(session);
+
     return {
-        host: parts[0],
-        port: parts[1],
-        path: url,
+        host: parsedUrl.host,
+        port: parsedUrl.port,
+        path: parsedUrl.path,
         method: undefined,
+        agent: agent
     };
 }

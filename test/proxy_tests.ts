@@ -4,13 +4,13 @@ import strings = require('../app_modules/strings');
 
 describe("appProxy", () => {
 
-    class ProxyProviderDirect implements proxy.ProxyUrlProvider {
+    class ProxyProviderDirect implements proxy.IProxyUrlProvider {
         getProxyForURL(url: string) {
             return "DIRECT";
         };
     }
 
-    class ProxyProviderProxy implements proxy.ProxyUrlProvider {
+    class ProxyProviderProxy implements proxy.IProxyUrlProvider {
         static host: string = "127.0.0.1";
         static port: string = "3128";
 

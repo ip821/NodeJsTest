@@ -1,18 +1,30 @@
 {
-	"version": "0.2.0",
-	"configurations": [
-		{ 
+    "version": "0.2.0",
+    "configurations": [
+        {
             "name": "Launch Electron App",
             "type": "node",
-            "program": "main.js", // important
+            "program": "boot.js", // important
             "stopOnEntry": false,
             "args": [],
             "cwd": ".",
             // next line is very important
             "runtimeExecutable": "node_modules/electron-prebuilt/dist/electron.exe",
-            "runtimeArguments": [],
-            "env": { }, 
+            "runtimeArguments": [
+                "-debug=5858"
+            ],
+            "env": {},
             "sourceMaps": false
-        } 
-	]
+        },
+        {
+            "name": "Attach",
+            "type": "node",
+            "request": "attach",
+            "port": 5858,
+            "sourceMaps": false,
+            "outDir": null,
+            "localRoot": "${workspaceRoot}",
+            "remoteRoot": null
+        }
+    ]
 }

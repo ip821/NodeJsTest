@@ -2,7 +2,7 @@
     "name": "NodejsConsoleApp1",
     "version": "0.0.0",
     "description": "NodejsConsoleApp1",
-    "main": "main.js",
+    "main": "boot.js",
     "author": {
         "name": "ip",
         "email": ""
@@ -17,7 +17,7 @@
         "xmlhttprequest": "1.7.0"
     },
     "scripts": {
-        "start": "electron main.js",
+        "start": "electron boot.js",
         "test": "./node_modules/.bin/mocha --no-timeouts --reporter spec"
     }
 }

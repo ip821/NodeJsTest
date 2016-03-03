@@ -19,6 +19,7 @@ export class DownloadManager {
         console.log('Downloading START: ' + url);
         var headerRequestOptions = appProxy.makeHttpRequest(url);
         headerRequestOptions.method = 'HEAD';
+        
         var headerRequest = http.get(headerRequestOptions, (headersResponse) => {
             var streamSize = 0;
             if (headersResponse.headers) {
