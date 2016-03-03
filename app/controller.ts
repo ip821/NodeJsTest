@@ -1,12 +1,13 @@
 import _ = require('underscore');
-import bootstrap = require("bootstrap");
+import Deps = require('ts-dependency-injection');
 import stringUtils = require('../app_modules/strings');
 import {VkApi, AudioListItem} from '../app_modules/vkapi';
 import {View, IViewEventHandler} from "../app/view";
-import {ListDownloader, IListDownloaderEventHandler} from "../app/list_downloader";
+import {IListDownloaderEventHandler, ListDownloader} from "../app/list_downloader";
 
 export class Controller implements IViewEventHandler, IListDownloaderEventHandler {
-    downloader: ListDownloader = new ListDownloader();
+    @Deps.Injection(ListDownloader)
+    downloader: ListDownloader;
     view: View = new View();
     audioList: AudioListItem[] = null;
     vkApi: VkApi = new VkApi();
