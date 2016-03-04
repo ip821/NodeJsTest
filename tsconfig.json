@@ -3,6 +3,7 @@
     "compilerOptions": {
        "module": "commonjs",
        "sourceMap": true,
-       "experimentalDecorators": true
+       "experimentalDecorators": true,
+       "emitDecoratorMetadata": true
    }
 }

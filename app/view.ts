@@ -1,6 +1,9 @@
 import stringUtils = require('../app_modules/strings');
 import _ = require('underscore');
 import $ = require('jquery');
+import 'zone.js';
+import 'reflect-metadata';
+import {Injectable} from "angular2/core";
 
 export interface ITableRow {
     aid: number;
@@ -13,21 +16,8 @@ export interface IViewEventHandler {
     onViewStopClick();
 }
 
-export interface IView {
-    setEventHandler(eventHandler: IViewEventHandler);
-    setModel(audioList: ITableRow[]);
-    setIdleState();
-    setRunningState(itemNumber: number);
-    setRowError(aid: number);
-    setRowSuccess(aid: number);
-    setRowWarning(aid: number);
-    setStreamProgress(dataLegth: number, streamSize: number);
-    setOverallProgress(index: number, length: number);
-    setOverallProgressDescription(message: string);
-}
-
-
-export class View implements IView {
+@Injectable()
+export class View {
     setEventHandler(eventHandler: IViewEventHandler) {
         $("#syncButton").click(eventHandler.onViewSyncClick);
         $("#stopButton").click(eventHandler.onViewStopClick);

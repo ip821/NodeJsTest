@@ -1,25 +1,18 @@
 import _ = require('underscore');
 import { Inject } from "inversify";
 import stringUtils = require('../app_modules/strings');
-import {IVkApi, IAudioListItem} from '../app_modules/vkapi';
-import {IViewEventHandler, IView} from "../app/view";
-import {IListDownloaderEventHandler, IListDownloader} from "../app/list_downloader";
-
-export interface IController {
-    run();
-}
-
-export class Controller implements IViewEventHandler, IListDownloaderEventHandler, IController {
-    downloader: IListDownloader;
-    view: IView;
+import {IAudioListItem, VkApi} from '../app_modules/vkapi';
+import {IViewEventHandler, View} from "../app/view";
+import {IListDownloaderEventHandler, ListDownloader} from "../app/list_downloader";
+import 'zone.js';
+import 'reflect-metadata';
+import {Injectable} from "angular2/core";
+ 
+@Injectable()
+export class Controller implements IViewEventHandler, IListDownloaderEventHandler {
     audioList: IAudioListItem[] = null;
-    vkApi: IVkApi;
 
-    constructor(view: IView, listDownloader: IListDownloader, vkApi: IVkApi) {
-        this.downloader = listDownloader;
-        this.view = view;
-        this.vkApi = vkApi;
-        
+    constructor(public view: View, public downloader: ListDownloader, public vkApi: VkApi) {
         this.view.setEventHandler(this);
         this.downloader.setEventHandler(this);
     }

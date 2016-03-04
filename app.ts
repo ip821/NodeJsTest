@@ -1,24 +1,20 @@
-import {IController, Controller} from "./app/controller";
-import { Binding, Kernel, BindingScope } from "inversify";
-import {IListDownloader, ListDownloader} from "./app/list_downloader";
-import {IView, View} from "./app/view";
+///<reference path="node_modules/angular2/typings/browser.d.ts"/>
+import {Controller} from "./app/controller";
+import {ListDownloader} from "./app/list_downloader";
+import {View} from "./app/view";
 import {VkApi, IAudioListItem} from './app_modules/vkapi';
-import typeioc = require("typeioc");
+import 'zone.js';
+import 'reflect-metadata';
+import {Injector, Injectable} from "angular2/core"; 
 
-var containerBuilder = typeioc.createBuilder();
-containerBuilder.register<VkApi>(VkApi).as(() => new VkApi());
-containerBuilder.register<IView>(View).as(() => new View());
-containerBuilder.register<IListDownloader>(ListDownloader).as(() => new ListDownloader());
-containerBuilder.register<IController>(Controller).as(c => {
-    var view = c.resolve<IView>(View);
-    var listDownloader = c.resolve<IListDownloader>(ListDownloader);
-    var vkApi = c.resolve<VkApi>(VkApi);
-    return new Controller(view, listDownloader, vkApi);
-});
-
-var container = containerBuilder.build();
+var container = Injector.resolveAndCreate([
+    View,
+    ListDownloader,
+    VkApi,
+    Controller
+]);
 
 $(document).ready(() => {
-    var controller = container.resolve<IController>(Controller);
+    var controller = container.get(Controller);
     controller.run();
 });

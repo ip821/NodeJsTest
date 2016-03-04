@@ -1,18 +1,20 @@
 /// <reference path="../typings/typemoq/typemoq.d.ts" />
-import typeioc = require("typeioc");
 import assert = require('assert');
-import {IListDownloader, ListDownloader} from "../app/list_downloader";
-import {IView, View} from "../app/view";
-import {Controller, IController} from "../app/controller";
-import {IVkApi, VkApi, IAudioListItem} from '../app_modules/vkapi';
+import {ListDownloader} from "../app/list_downloader";
+import {View} from "../app/view";
+import {Controller} from "../app/controller";
+import {VkApi, IAudioListItem} from '../app_modules/vkapi';
 import {Mock, It} from "typemoq";
+import 'zone.js';
+import 'reflect-metadata';
+import {Injector, Injectable, provide} from "angular2/core";
 
 describe("controller", () => {
 
-    var container: typeioc.IContainer;
-    var viewMock: Mock<IView>;
-    var listDownloaderMock: Mock<IListDownloader>;
-    var vkApiMock: Mock<IVkApi>;
+    var container: Injector;
+    var viewMock: Mock<View>;
+    var listDownloaderMock: Mock<ListDownloader>;
+    var vkApiMock: Mock<VkApi>;
 
     beforeEach(() => {
         viewMock = Mock.ofType(View);
@@ -23,26 +25,19 @@ describe("controller", () => {
 
         vkApiMock = Mock.ofType(VkApi);
 
-        var containerBuilder = typeioc.createBuilder();
-        containerBuilder.register<IVkApi>(VkApi).as(() => vkApiMock.object);
-        containerBuilder.register<IView>(View).as(() => viewMock.object);
-        containerBuilder.register<IListDownloader>(ListDownloader).as(() => listDownloaderMock.object);
-        containerBuilder.register<Controller>(Controller).as(c => {
-            var view = c.resolve(View);
-            var listDownloader = c.resolve(ListDownloader);
-            var vkApi = c.resolve(VkApi);
-            return new Controller(view, listDownloader, vkApi);
-        });
-
-        container = containerBuilder.build();
-
+        container = Injector.resolveAndCreate([
+            provide(View, {useValue: viewMock.object}),
+            provide(ListDownloader, {useValue: listDownloaderMock.object}),
+            provide(VkApi, {useValue: vkApiMock.object}),
+            Controller
+        ]);
     });
 
     it("should start download on sync command", () => {
         var isCalled = false;
         listDownloaderMock.setup(c => c.startDownload(It.isAny())).callback(() => isCalled = true);
 
-        var controller = container.resolve<Controller>(Controller);
+        var controller = container.get(Controller);
         controller.audioList = [];
         controller.onViewSyncClick();
 
@@ -53,7 +48,7 @@ describe("controller", () => {
         var isCalled = false;
         listDownloaderMock.setup(c => c.stopDownload()).callback(() => isCalled = true);
 
-        var controller = container.resolve<Controller>(Controller);
+        var controller = container.get(Controller);
         controller.audioList = [];
         controller.onViewStopClick();
 

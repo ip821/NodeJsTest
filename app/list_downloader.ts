@@ -3,6 +3,9 @@ import fs = require('fs');
 import path = require('path');
 import proxy = require('../app_modules/proxy');
 import {DownloadManager, IDownloadManagerEventHandler} from '../app_modules/download_manager';
+import 'zone.js';
+import 'reflect-metadata';
+import {Injectable} from "angular2/core";
 
 export interface IListDownloaderEventHandler {
     onDownloaderStop();
@@ -18,13 +21,8 @@ export interface IDownloadItem{
     url: string;
 }
 
-export interface IListDownloader {
-    setEventHandler (eventHandler: IListDownloaderEventHandler);
-    startDownload (items: IDownloadItem[]);
-    stopDownload ();
-}
-
-export class ListDownloader implements IDownloadManagerEventHandler, IListDownloader {
+@Injectable()
+export class ListDownloader implements IDownloadManagerEventHandler {
     stop = false;
     eventHandler: IListDownloaderEventHandler;
     index = 0;
