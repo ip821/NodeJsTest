@@ -1,5 +1,4 @@
 import _ = require('underscore');
-import { Inject } from "inversify";
 import stringUtils = require('../app_modules/strings');
 import {IAudioListItem, VkApi} from '../app_modules/vkapi';
 import {IViewEventHandler, View} from "../app/view";

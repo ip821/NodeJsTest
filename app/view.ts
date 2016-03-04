@@ -25,10 +25,8 @@ export class View {
 
     setModel(audioList: ITableRow[]) {
         _.forEach(audioList, item => {
-            $('#tableBody').append(stringUtils.format('<tr class="audioRow" id="{0}">', item.aid) +
-                '<td>' + item.artist + '</td>' +
-                '<td>' + item.title + '</td>' +
-                '</tr>');
+            $('#tableBody').append(stringUtils.format('<li class="list-group-item audioRow" id="{0}">{1} - {2}</li>', item.aid, item.artist, item.title)
+            );
         });
         $('#syncBadge').html(audioList.length.toString());
     }
@@ -53,19 +51,22 @@ export class View {
     }
 
     setRowError(aid: number) {
-        $(stringUtils.format('#{0}.audioRow', aid)).removeClass('success');
-        $(stringUtils.format('#{0}.audioRow', aid)).removeClass('warning');
-        $(stringUtils.format('#{0}.audioRow', aid)).addClass('error');
+        var row = $(stringUtils.format('#{0}.audioRow', aid));
+        row.removeClass('list-group-item-success');
+        row.removeClass('list-group-item-warning');
+        row.addClass('list-group-item-danger');
     }
 
     setRowSuccess(aid: number) {
-        $(stringUtils.format('#{0}.audioRow', aid)).removeClass('error');
-        $(stringUtils.format('#{0}.audioRow', aid)).removeClass('warning');
-        $(stringUtils.format('#{0}.audioRow', aid)).addClass('success');
+        var row = $(stringUtils.format('#{0}.audioRow', aid));
+        row.removeClass('list-group-item-danger');
+        row.removeClass('list-group-item-warning');
+        row.addClass('list-group-item-success');
     }
 
     setRowWarning(aid: number) {
-        $(stringUtils.format('#{0}.audioRow', aid)).addClass('warning');
+        var row = $(stringUtils.format('#{0}.audioRow', aid));
+        row.addClass('list-group-item-warning');
     }
 
     setStreamProgress(dataLegth: number, streamSize: number) {

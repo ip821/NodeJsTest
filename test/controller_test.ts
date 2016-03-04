@@ -1,4 +1,3 @@
-/// <reference path="../typings/typemoq/typemoq.d.ts" />
 import assert = require('assert');
 import {ListDownloader} from "../app/list_downloader";
 import {View} from "../app/view";

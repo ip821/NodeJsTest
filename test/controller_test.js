@@ -1,5 +1,4 @@
 "use strict";
-/// <reference path="../typings/typemoq/typemoq.d.ts" />
 var assert = require('assert');
 var list_downloader_1 = require("../app/list_downloader");
 var view_1 = require("../app/view");
