@@ -2,12 +2,16 @@ import http = require('http');
 import fs = require('fs');
 import stringUtils = require('./strings');
 import appProxy = require("./proxy");
+import 'zone.js';
+import 'reflect-metadata';
+import {Injectable} from "angular2/core";
 
 export interface IDownloadManagerEventHandler {
     onDownloadManagerCompleted(err: any);
     onDownloadManagerProgress(dataLength: number, streamSize: number);
 }
 
+@Injectable()
 export class DownloadManager {
     eventHandler: IDownloadManagerEventHandler;
 

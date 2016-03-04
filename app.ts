@@ -2,12 +2,14 @@
 import {Controller} from "./app/controller";
 import {ListDownloader} from "./app/list_downloader";
 import {View} from "./app/view";
+import {DownloadManager} from './app_modules/download_manager';
 import {VkApi, IAudioListItem} from './app_modules/vkapi';
 import 'zone.js';
 import 'reflect-metadata';
 import {Injector, Injectable} from "angular2/core"; 
 
 var container = Injector.resolveAndCreate([
+    DownloadManager,
     View,
     ListDownloader,
     VkApi,

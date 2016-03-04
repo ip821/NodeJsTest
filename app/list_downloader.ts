@@ -27,9 +27,8 @@ export class ListDownloader implements IDownloadManagerEventHandler {
     eventHandler: IListDownloaderEventHandler;
     index = 0;
     audioList: IDownloadItem[];
-    downloadManager: DownloadManager = new DownloadManager();
 
-    constructor() {
+    constructor(public downloadManager: DownloadManager) {
         this.downloadManager.setEventHandler(this);
     }
 
