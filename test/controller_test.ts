@@ -27,9 +27,9 @@ describe("controller", () => {
         containerBuilder.register<IView>(View).as(() => viewMock.object);
         containerBuilder.register<IListDownloader>(ListDownloader).as(() => listDownloaderMock.object);
         containerBuilder.register<Controller>(Controller).as(c => {
-            var view = c.resolve<IView>(View);
-            var listDownloader = c.resolve<IListDownloader>(ListDownloader);
-            var vkApi = c.resolve<VkApi>(VkApi);
+            var view = c.resolve(View);
+            var listDownloader = c.resolve(ListDownloader);
+            var vkApi = c.resolve(VkApi);
             return new Controller(view, listDownloader, vkApi);
         });
 
