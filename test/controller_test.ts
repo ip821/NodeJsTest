@@ -1,9 +1,10 @@
+/// <reference path="../typings/typemoq/typemoq.d.ts" />
 import typeioc = require("typeioc");
 import assert = require('assert');
 import {IListDownloader, ListDownloader} from "../app/list_downloader";
 import {IView, View} from "../app/view";
 import {Controller, IController} from "../app/controller";
-import {VkApi, IAudioListItem} from '../app_modules/vkapi';
+import {IVkApi, VkApi, IAudioListItem} from '../app_modules/vkapi';
 import {Mock, It} from "typemoq";
 
 describe("controller", () => {
@@ -11,7 +12,7 @@ describe("controller", () => {
     var container: typeioc.IContainer;
     var viewMock: Mock<IView>;
     var listDownloaderMock: Mock<IListDownloader>;
-    var vkApiMock: Mock<VkApi>;
+    var vkApiMock: Mock<IVkApi>;
 
     beforeEach(() => {
         viewMock = Mock.ofType(View);
@@ -23,7 +24,7 @@ describe("controller", () => {
         vkApiMock = Mock.ofType(VkApi);
 
         var containerBuilder = typeioc.createBuilder();
-        containerBuilder.register<VkApi>(VkApi).as(() => vkApiMock.object);
+        containerBuilder.register<IVkApi>(VkApi).as(() => vkApiMock.object);
         containerBuilder.register<IView>(View).as(() => viewMock.object);
         containerBuilder.register<IListDownloader>(ListDownloader).as(() => listDownloaderMock.object);
         containerBuilder.register<Controller>(Controller).as(c => {

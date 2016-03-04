@@ -1,8 +1,8 @@
 import _ = require('underscore');
 import { Inject } from "inversify";
 import stringUtils = require('../app_modules/strings');
-import {VkApi, IAudioListItem} from '../app_modules/vkapi';
-import {View, IViewEventHandler, IView} from "../app/view";
+import {IVkApi, IAudioListItem} from '../app_modules/vkapi';
+import {IViewEventHandler, IView} from "../app/view";
 import {IListDownloaderEventHandler, IListDownloader} from "../app/list_downloader";
 
 export interface IController {
@@ -13,9 +13,9 @@ export class Controller implements IViewEventHandler, IListDownloaderEventHandle
     downloader: IListDownloader;
     view: IView;
     audioList: IAudioListItem[] = null;
-    vkApi: VkApi;
+    vkApi: IVkApi;
 
-    constructor(view: IView, listDownloader: IListDownloader, vkApi: VkApi) {
+    constructor(view: IView, listDownloader: IListDownloader, vkApi: IVkApi) {
         this.downloader = listDownloader;
         this.view = view;
         this.vkApi = vkApi;

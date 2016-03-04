@@ -10,9 +10,9 @@ containerBuilder.register<VkApi>(VkApi).as(() => new VkApi());
 containerBuilder.register<IView>(View).as(() => new View());
 containerBuilder.register<IListDownloader>(ListDownloader).as(() => new ListDownloader());
 containerBuilder.register<IController>(Controller).as(c => {
-    var view = c.resolve(View);
-    var listDownloader = c.resolve(ListDownloader);
-    var vkApi = c.resolve(VkApi);
+    var view = c.resolve<IView>(View);
+    var listDownloader = c.resolve<IListDownloader>(ListDownloader);
+    var vkApi = c.resolve<VkApi>(VkApi);
     return new Controller(view, listDownloader, vkApi);
 });
 

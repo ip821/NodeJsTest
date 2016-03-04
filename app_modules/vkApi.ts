@@ -11,7 +11,12 @@ export interface IAudioListItem {
     url: string;
 }
 
-export class VkApi {
+export interface IVkApi {
+    openLoginWindow(parentWindow: Window, onClosedCallback: (userId: string, accessToken: string) => void);
+    getAudioList(userId: string, accessToken: string, onSuccessCallback: (args: IAudioListItem[]) => void, onErrorCallback: (e: any) => void);
+}
+
+export class VkApi implements IVkApi {
     openLoginWindow(parentWindow: Window, onClosedCallback: (userId: string, accessToken: string) => void) {
         var electron = require('electron');
         var loginWindow = new electron.remote.BrowserWindow({ height: 400, width: 300 });
