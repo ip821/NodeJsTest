@@ -9,6 +9,6 @@ import 'reflect-metadata';
 import {Injector, Injectable, Component} from "angular2/core";
 import {bootstrap} from 'angular2/platform/browser';
 
-$(document).ready(() => {
+$(window.document).ready(() => {
     bootstrap(Controller)
 });
