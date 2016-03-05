@@ -4,7 +4,7 @@ import stringUtils = require('./strings');
 import appProxy = require("./proxy");
 import 'zone.js';
 import 'reflect-metadata';
-import {Injectable} from "angular2/core";
+import {Injectable, Component} from "angular2/core";
 
 export interface IDownloadManagerEventHandler {
     onDownloadManagerCompleted(err: any);

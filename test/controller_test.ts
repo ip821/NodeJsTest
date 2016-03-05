@@ -3,7 +3,8 @@ import {ListDownloader} from "../app/list_downloader";
 import {View} from "../app/view";
 import {Controller} from "../app/controller";
 import {VkApi, IAudioListItem} from '../app_modules/vkapi';
-import {Mock, It} from "typemoq";
+import {DownloadManager} from '../app_modules/download_manager';
+import {Mock, It, MockBehavior} from "typemoq";
 import 'zone.js';
 import 'reflect-metadata';
 import {Injector, Injectable, provide} from "angular2/core";
@@ -14,20 +15,19 @@ describe("controller", () => {
     var viewMock: Mock<View>;
     var listDownloaderMock: Mock<ListDownloader>;
     var vkApiMock: Mock<VkApi>;
+    var downloadManagerMock: Mock<DownloadManager>;
 
     beforeEach(() => {
+        downloadManagerMock = Mock.ofType(DownloadManager);
         viewMock = Mock.ofType(View);
-        viewMock.setup(c => c.setEventHandler(It.isAny()));
-
-        listDownloaderMock = Mock.ofType(ListDownloader);
-        listDownloaderMock.setup(c => c.setEventHandler(It.isAny()));
-
+        listDownloaderMock = Mock.ofType(ListDownloader, MockBehavior.Loose, downloadManagerMock.object);
         vkApiMock = Mock.ofType(VkApi);
 
         container = Injector.resolveAndCreate([
-            provide(View, {useValue: viewMock.object}),
-            provide(ListDownloader, {useValue: listDownloaderMock.object}),
-            provide(VkApi, {useValue: vkApiMock.object}),
+            provide(View, { useValue: viewMock.object }),
+            provide(ListDownloader, { useValue: listDownloaderMock.object }),
+            provide(VkApi, { useValue: vkApiMock.object }),
+            provide(DownloadManager, { useValue: downloadManagerMock.object }),
             Controller
         ]);
     });

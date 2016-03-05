@@ -9,22 +9,15 @@
 </head>
 
 <body>
-    <script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.js');</script>
+    <script>
+        window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.js');
+    </script>
+    <script src="./node_modules/angular2/bundles/angular2-polyfills.js"></script>
     <script src="./app.js"></script>
-    <a id="syncButton" class="btn btn-primary">Sync <span class='badge' id='syncBadge'></span></a>
-    <a id="stopButton" class="btn btn-primary hidden">Stop</a>
-    <div class="progress hidden" id='progressContainer'>
-        <div id='progress' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-        </div>
+    <!--<script src="./node_modules/angular2/bundles/angular2.js"></script>-->
+    <div class="container">
+        <app></app>
     </div>
-    <div class="progress hidden" id='progressSongContainer'>
-        <div id='progressSong' class="progress-bar progress-bar-striped active progress-bar-no-animation" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-        </div>
-    </div>
-    <p id='audioName' class='hidden'></p>
-    <br>
-    <ul id="tableBody" class="list-group">
-    </ul>
 </body>
 
 </html>

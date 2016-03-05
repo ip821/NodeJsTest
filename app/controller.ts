@@ -3,11 +3,36 @@ import stringUtils = require('../app_modules/strings');
 import {IAudioListItem, VkApi} from '../app_modules/vkapi';
 import {IViewEventHandler, View} from "../app/view";
 import {IListDownloaderEventHandler, ListDownloader} from "../app/list_downloader";
+import {DownloadManager, IDownloadManagerEventHandler} from '../app_modules/download_manager';
 import 'zone.js';
 import 'reflect-metadata';
-import {Injectable} from "angular2/core";
+import {Injectable, Component} from "angular2/core";
  
 @Injectable()
+@Component({
+    selector: 'app',
+    providers: [View, ListDownloader, VkApi, DownloadManager],
+    template: `
+
+    <a id="syncButton" class="btn btn-primary">Sync <span class='badge' id='syncBadge'></span></a>
+    <a id="stopButton" class="btn btn-primary hidden">Stop</a>
+    <div class="progress hidden" id='progressContainer'>
+        <div id='progress' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+        aria-valuemax="100" style="width: 0%">
+        </div>
+    </div>
+    <div class="progress hidden" id='progressSongContainer'>
+        <div id='progressSong' class="progress-bar progress-bar-striped active progress-bar-no-animation" role="progressbar" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+        </div>
+    </div>
+    <p id='audioName' class='hidden'></p>
+    <br>
+    <ul id="tableBody" class="list-group">
+    </ul>
+  `
+})
+
 export class Controller implements IViewEventHandler, IListDownloaderEventHandler {
     audioList: IAudioListItem[] = null;
 
