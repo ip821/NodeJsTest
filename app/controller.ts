@@ -7,13 +7,13 @@ import {DownloadManager, IDownloadManagerEventHandler} from '../app_modules/down
 import 'zone.js';
 import 'reflect-metadata';
 import {Injectable, Component} from "angular2/core";
- 
+
 @Injectable()
 @Component({
     selector: 'app',
     providers: [View, ListDownloader, VkApi, DownloadManager],
     template: `
-
+    <div>
     <a id="syncButton" class="btn btn-primary">Sync <span class='badge' id='syncBadge'></span></a>
     <a id="stopButton" class="btn btn-primary hidden">Stop</a>
     <div class="progress hidden" id='progressContainer'>
@@ -30,6 +30,7 @@ import {Injectable, Component} from "angular2/core";
     <br>
     <ul id="tableBody" class="list-group">
     </ul>
+    </div>
   `
 })
 
@@ -37,8 +38,18 @@ export class Controller implements IViewEventHandler, IListDownloaderEventHandle
     audioList: IAudioListItem[] = null;
 
     constructor(public view: View, public downloader: ListDownloader, public vkApi: VkApi) {
+    }
+
+    ngAfterViewInit() {
         this.view.setEventHandler(this);
         this.downloader.setEventHandler(this);
+        this.run();
+    }
+
+    run() {
+        this.vkApi.openLoginWindow(window, (userId, accessToken) => {
+            this.initAudioList(userId, accessToken);
+        });
     }
 
     onViewSyncClick = () => {
@@ -71,7 +82,7 @@ export class Controller implements IViewEventHandler, IListDownloaderEventHandle
         this.view.setIdleState();
     }
 
-    private initAudioList (userId, accessToken) {
+    private initAudioList(userId, accessToken) {
         this.vkApi.getAudioList(
             userId,
             accessToken,
@@ -84,11 +95,5 @@ export class Controller implements IViewEventHandler, IListDownloaderEventHandle
                 console.log(e);
             }
         );
-    }
-
-    run () {
-        this.vkApi.openLoginWindow(window, (userId, accessToken) => {
-            this.initAudioList(userId, accessToken);
-        });
     }
 }
