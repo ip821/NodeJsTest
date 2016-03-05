@@ -6,7 +6,7 @@ import {IListDownloaderEventHandler, ListDownloader} from "../app/list_downloade
 import {DownloadManager, IDownloadManagerEventHandler} from '../app_modules/download_manager';
 import 'zone.js';
 import 'reflect-metadata';
-import {Injectable, Component} from "angular2/core";
+import {Injectable, Component, AfterViewInit} from "angular2/core";
 
 @Injectable()
 @Component({
@@ -34,7 +34,7 @@ import {Injectable, Component} from "angular2/core";
   `
 })
 
-export class Controller implements IViewEventHandler, IListDownloaderEventHandler {
+export class Controller implements AfterViewInit, IViewEventHandler, IListDownloaderEventHandler {
     audioList: IAudioListItem[] = null;
 
     constructor(public view: View, public downloader: ListDownloader, public vkApi: VkApi) {
