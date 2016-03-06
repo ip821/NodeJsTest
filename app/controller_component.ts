@@ -80,7 +80,7 @@ export class ControllerComponent implements AfterViewInit, IListDownloaderEventH
     }
 
     onDownloaderError = (index: number) => {
-        this._list.setRowStatus(index, RowStatus.Error);
+        this._ngZone.run(() => this._list.setRowStatus(index, RowStatus.Error));
     }
 
     onDownloaderOverallProgress = (completedIndex: number, currentIndex: number) => {

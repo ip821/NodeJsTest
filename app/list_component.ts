@@ -41,6 +41,6 @@ export class ListComponent {
     }
     
     setRowStatus = (index: number, rowStatus: RowStatus) => {
-        this._ngZobe.run(() => this._rowStatuses[index] = rowStatus);
+        this._rowStatuses[index] = rowStatus;
     }
 }
