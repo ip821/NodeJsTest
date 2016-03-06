@@ -2,8 +2,8 @@
 import 'zone.js';
 import 'reflect-metadata';
 import {bootstrap} from 'angular2/platform/browser';
-import {Controller} from "./app/controller";
+import {ControllerComponent} from "./app/controller_component";
 
 $(window.document).ready(() => {
-    bootstrap(Controller)
+    bootstrap(ControllerComponent)
 });

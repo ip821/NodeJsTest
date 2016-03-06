@@ -1,7 +1,6 @@
 import assert = require('assert');
 import {ListDownloader} from "../app/list_downloader";
-import {View} from "../app/view";
-import {Controller} from "../app/controller";
+import {ControllerComponent} from "../app/controller_component";
 import {VkApi, IAudioListItem} from '../app_modules/vkapi';
 import {DownloadManager} from '../app_modules/download_manager';
 import {Mock, It, MockBehavior} from "typemoq";
@@ -12,23 +11,20 @@ import {Injector, Injectable, provide} from "angular2/core";
 describe("controller", () => {
 
     var container: Injector;
-    var viewMock: Mock<View>;
     var listDownloaderMock: Mock<ListDownloader>;
     var vkApiMock: Mock<VkApi>;
     var downloadManagerMock: Mock<DownloadManager>;
 
     beforeEach(() => {
         downloadManagerMock = Mock.ofType(DownloadManager);
-        viewMock = Mock.ofType(View);
         listDownloaderMock = Mock.ofType(ListDownloader, MockBehavior.Loose, downloadManagerMock.object);
         vkApiMock = Mock.ofType(VkApi);
 
         container = Injector.resolveAndCreate([
-            provide(View, { useValue: viewMock.object }),
             provide(ListDownloader, { useValue: listDownloaderMock.object }),
             provide(VkApi, { useValue: vkApiMock.object }),
             provide(DownloadManager, { useValue: downloadManagerMock.object }),
-            Controller
+            ControllerComponent
         ]);
     });
 
@@ -36,7 +32,7 @@ describe("controller", () => {
         var isCalled = false;
         listDownloaderMock.setup(c => c.startDownload(It.isAny())).callback(() => isCalled = true);
 
-        var controller = container.get(Controller);
+        var controller = container.get(ControllerComponent);
         controller.audioList = [];
         controller.onViewSyncClick();
 
@@ -47,7 +43,7 @@ describe("controller", () => {
         var isCalled = false;
         listDownloaderMock.setup(c => c.stopDownload()).callback(() => isCalled = true);
 
-        var controller = container.get(Controller);
+        var controller = container.get(ControllerComponent);
         controller.audioList = [];
         controller.onViewStopClick();
 
