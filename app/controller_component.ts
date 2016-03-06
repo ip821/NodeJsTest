@@ -3,7 +3,7 @@ import stringUtils = require('../app_modules/strings');
 import {IAudioListItem, VkApi} from '../app_modules/vkapi';
 import {IListDownloaderEventHandler, ListDownloader} from "../app/list_downloader";
 import {DownloadManager, IDownloadManagerEventHandler} from '../app_modules/download_manager';
-import {ListComponent} from "./list_component";
+import {ListComponent, RowStatus} from "./list_component";
 import {HeaderComponent} from "./header_component";
 import 'zone.js';
 import 'reflect-metadata';
@@ -80,17 +80,17 @@ export class ControllerComponent implements AfterViewInit, IListDownloaderEventH
     }
 
     onDownloaderError = (index: number) => {
-        this._list.setRowError(this.audioList[index].aid);
+        this._list.setRowStatus(index, RowStatus.Error);
     }
 
     onDownloaderOverallProgress = (completedIndex: number, currentIndex: number) => {
         this._ngZone.run(() => {
             var completedItem = this.audioList[completedIndex];
-            this._list.setRowSuccess(completedItem.aid);
+            this._list.setRowStatus(completedIndex, RowStatus.Success);
             this._header.setOverallProgress(completedIndex, this.audioList.length);
             var currentItem = this.audioList[currentIndex];
             this._header.setOverallProgressDescription(stringUtils.format('{0}-{1}.mp3', currentItem.artist, currentItem.title));
-            this._list.setRowWarning(currentItem.aid);
+            this._list.setRowStatus(currentIndex, RowStatus.Warning);
         });
     }
 

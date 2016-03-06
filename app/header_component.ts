@@ -4,21 +4,50 @@ import {Injectable, Component, EventEmitter, Input, Output, NgZone} from "angula
 @Component({
     selector: "header",
     template: `
-    <a id="syncButton" class="btn btn-primary" [class.hidden]="!_syncButtonVisible" (click)="onViewSyncClick()">Sync <span class='badge' id='syncBadge'>{{_count}}</span></a>
-    <a id="stopButton" class="btn btn-primary hidden" [class.hidden]="!_stopButtonVisible" (click)="onViewStopClick()">Stop</a>
-    <div class="progress hidden" id='progressContainer' [class.hidden]="!_stopButtonVisible">
-        <div id='progress' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-        aria-valuemax="100" [style.width.%]="_overallProgressValue">
+    <a 
+        id="syncButton" 
+        class="btn btn-primary" 
+        [class.hidden]="!_syncButtonVisible" 
+        (click)="onViewSyncClick()"
+        >
+        Sync 
+        <span class='badge' id='syncBadge'>{{_count}}</span>
+    </a>
+    <a 
+        id="stopButton" 
+        class="btn btn-primary" 
+        [class.hidden]="_syncButtonVisible" 
+        (click)="onViewStopClick()"
+        >
+        Stop
+    </a>
+    <div id='progressContainer' class="progress" [class.hidden]="_syncButtonVisible">
+        <div 
+            id='progress' 
+            class="progress-bar progress-bar-striped active" 
+            role="progressbar" 
+            aria-valuenow="0" 
+            aria-valuemin="0"
+            aria-valuemax="100" 
+            [style.width.%]="_overallProgressValue"
+            >
         {{_overallProgressValue}}%
         </div>
     </div>
-    <div class="progress hidden" id='progressSongContainer' [class.hidden]="!_stopButtonVisible">
-        <div id='progressSong' class="progress-bar progress-bar-striped active progress-bar-no-animation" role="progressbar" aria-valuenow="0"
-        aria-valuemin="0" aria-valuemax="100" [style.width.%]="_songProgressValue">
+    <div id='progressSongContainer' class="progress" [class.hidden]="_syncButtonVisible">
+        <div 
+            id='progressSong' 
+            class="progress-bar progress-bar-striped active progress-bar-no-animation" 
+            role="progressbar" 
+            aria-valuenow="0"
+            aria-valuemin="0" 
+            aria-valuemax="100" 
+            [style.width.%]="_songProgressValue"
+            >
         {{_songProgressValue}}%
         </div>
     </div>
-    <p id='audioName' class='hidden' [class.hidden]="!_stopButtonVisible">{{_message}}</p>
+    <p id='audioName' class='hidden' [class.hidden]="_syncButtonVisible">{{_message}}</p>
     `
 })
 export class HeaderComponent {
@@ -28,7 +57,6 @@ export class HeaderComponent {
     @Input() private _count: number;
     @Input() private _message: string;
     @Input() private _syncButtonVisible = true;
-    @Input() private _stopButtonVisible = false;
     @Input() private _overallProgressValue = 0;
     @Input() private _songProgressValue = 0;
 
@@ -48,12 +76,10 @@ export class HeaderComponent {
 
     setIdleState = () => {
         this._syncButtonVisible = true;
-        this._stopButtonVisible = false;
     }
 
     setRunningState = (itemNumber: number) => {
         this._syncButtonVisible = false;
-        this._stopButtonVisible = true;
 
         this._overallProgressValue = 0;
         this._songProgressValue = 0;
