@@ -7,7 +7,7 @@ import {ListComponent} from "./list_component";
 import {HeaderComponent} from "./header_component";
 import 'zone.js';
 import 'reflect-metadata';
-import {Injectable, Component, AfterViewInit, Input, ViewChild} from "angular2/core";
+import {Injectable, Component, AfterViewInit, Input, ViewChild, NgZone} from "angular2/core";
 
 @Injectable()
 @Component({
@@ -34,7 +34,7 @@ export class ControllerComponent implements AfterViewInit, IListDownloaderEventH
     @ViewChild(ListComponent)
     _list: ListComponent;
 
-    constructor(public downloader: ListDownloader, public vkApi: VkApi) {
+    constructor(public downloader: ListDownloader, public vkApi: VkApi, private _ngZone: NgZone) {
     }
 
     ngAfterViewInit() {
@@ -54,8 +54,10 @@ export class ControllerComponent implements AfterViewInit, IListDownloaderEventH
             accessToken,
             (audioList: IAudioListItem[]) => {
                 this.audioList = audioList;
-                this._list.setAudioList(audioList);
-                this._header.setCount(audioList.length);
+                this._ngZone.run(() => {
+                    this._list.setAudioList(audioList);
+                    this._header.setCount(audioList.length);
+                });
             },
             (e) => {
                 console.log("Error!");
@@ -65,7 +67,7 @@ export class ControllerComponent implements AfterViewInit, IListDownloaderEventH
     }
 
     onViewSyncClick = () => {
-        this._header.setRunningState(this.audioList.length);
+        this._ngZone.run(() => this._header.setRunningState(this.audioList.length));
         this.downloader.startDownload(this.audioList);
     }
 
@@ -74,7 +76,7 @@ export class ControllerComponent implements AfterViewInit, IListDownloaderEventH
     }
 
     onDownloaderStreamProgress = (dataLegth: number, streamSize: number) => {
-        this._header.setStreamProgress(dataLegth, streamSize);
+        this._ngZone.run(() => this._header.setStreamProgress(dataLegth, streamSize));
     }
 
     onDownloaderError = (index: number) => {
@@ -82,15 +84,19 @@ export class ControllerComponent implements AfterViewInit, IListDownloaderEventH
     }
 
     onDownloaderOverallProgress = (completedIndex: number, currentIndex: number) => {
-        var completedItem = this.audioList[completedIndex];
-        this._list.setRowSuccess(completedItem.aid);
-        this._header.setOverallProgress(completedIndex, this.audioList.length);
-        var currentItem = this.audioList[currentIndex];
-        this._header.setOverallProgressDescription(stringUtils.format('{0}-{1}.mp3', currentItem.artist, currentItem.title));
-        this._list.setRowWarning(currentItem.aid);
+        this._ngZone.run(() => {
+            var completedItem = this.audioList[completedIndex];
+            this._list.setRowSuccess(completedItem.aid);
+            this._header.setOverallProgress(completedIndex, this.audioList.length);
+            var currentItem = this.audioList[currentIndex];
+            this._header.setOverallProgressDescription(stringUtils.format('{0}-{1}.mp3', currentItem.artist, currentItem.title));
+            this._list.setRowWarning(currentItem.aid);
+        });
     }
 
     onDownloaderStop = () => {
-        this._header.setIdleState();
+        this._ngZone.run(() => {
+            this._header.setIdleState();
+        });
     }
 }

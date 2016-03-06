@@ -4,19 +4,21 @@ import {Injectable, Component, EventEmitter, Input, Output, NgZone} from "angula
 @Component({
     selector: "header",
     template: `
-    <a id="syncButton" class="btn btn-primary" (click)="onViewSyncClick()">Sync <span class='badge' id='syncBadge'>{{_count}}</span></a>
-    <a id="stopButton" class="btn btn-primary hidden" (click)="onViewStopClick()">Stop</a>
-    <div class="progress hidden" id='progressContainer'>
+    <a id="syncButton" class="btn btn-primary" [class.hidden]="!_syncButtonVisible" (click)="onViewSyncClick()">Sync <span class='badge' id='syncBadge'>{{_count}}</span></a>
+    <a id="stopButton" class="btn btn-primary hidden" [class.hidden]="!_stopButtonVisible" (click)="onViewStopClick()">Stop</a>
+    <div class="progress hidden" id='progressContainer' [class.hidden]="!_stopButtonVisible">
         <div id='progress' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-        aria-valuemax="100" style="width: 0%">
+        aria-valuemax="100" [style.width.%]="_overallProgressValue">
+        {{_overallProgressValue}}%
         </div>
     </div>
-    <div class="progress hidden" id='progressSongContainer'>
+    <div class="progress hidden" id='progressSongContainer' [class.hidden]="!_stopButtonVisible">
         <div id='progressSong' class="progress-bar progress-bar-striped active progress-bar-no-animation" role="progressbar" aria-valuenow="0"
-        aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+        aria-valuemin="0" aria-valuemax="100" [style.width.%]="_songProgressValue">
+        {{_songProgressValue}}%
         </div>
     </div>
-    <p id='audioName' class='hidden'></p>
+    <p id='audioName' class='hidden' [class.hidden]="!_stopButtonVisible">{{_message}}</p>
     `
 })
 export class HeaderComponent {
@@ -24,8 +26,13 @@ export class HeaderComponent {
     @Output() onClickSync = new EventEmitter();
     @Output() onClickStop = new EventEmitter();
     @Input() private _count: number;
+    @Input() private _message: string;
+    @Input() private _syncButtonVisible = true;
+    @Input() private _stopButtonVisible = false;
+    @Input() private _overallProgressValue = 0;
+    @Input() private _songProgressValue = 0;
 
-    constructor(private _ngZone: NgZone) { }
+    constructor() { }
 
     onViewSyncClick = () => {
         this.onClickSync.next(null);
@@ -36,43 +43,35 @@ export class HeaderComponent {
     }
 
     setCount = (count: number) => {
-        this._ngZone.run(() => this._count = count);
+        this._count = count;
     }
 
     setIdleState = () => {
-        $('#stopButton').addClass('hidden');
-        $('#syncButton').removeClass('hidden');
-        $('#progressContainer').addClass('hidden');
-        $('#progressSongContainer').addClass('hidden');
-        $('#audioName').addClass('hidden');
+        this._syncButtonVisible = true;
+        this._stopButtonVisible = false;
     }
 
     setRunningState = (itemNumber: number) => {
-        $('#stopButton').removeClass('hidden');
-        $('#syncButton').addClass('hidden');
+        this._syncButtonVisible = false;
+        this._stopButtonVisible = true;
 
-        $('#audioName').removeClass('hidden');
-        $('#progressContainer').removeClass('hidden');
-        $('#progressSongContainer').removeClass('hidden');
-        $('#progress').attr('aria-valuemax', itemNumber);
-        $('#progressSong').css('width', 0);
+        this._overallProgressValue = 0;
+        this._songProgressValue = 0;
     }
 
     setStreamProgress = (dataLegth: number, streamSize: number) => {
-        var percentValue = Math.round((dataLegth / streamSize) * 100) + '%';
-        $('#progressSong').css('width', percentValue);
-        $('#progressSong').html(percentValue);
+        var percentValue = Math.round((dataLegth / streamSize) * 100);
+        this._songProgressValue = percentValue;
     }
 
     setOverallProgress = (index: number, length: number) => {
-        var percentValue = Math.floor((index / length) * 100) + '%';
-        $('#progress').html(percentValue);
-        $('#progress').css('width', percentValue);
-        $('#progressSong').css('width', 0);
+        var percentValue = Math.floor((index / length) * 100);
+        this._overallProgressValue = percentValue
+        this._songProgressValue = 0;
     }
 
     setOverallProgressDescription = (message: string) => {
-        $('#audioName').html(message);
+        this._message = message;
     }
 
 }

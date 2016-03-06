@@ -1,4 +1,4 @@
-import {Injectable, Component, AfterViewInit, Input, Output, NgZone} from "angular2/core";
+import {Injectable, Component, AfterViewInit, Input, Output, ElementRef} from "angular2/core";
 import stringUtils = require('../app_modules/strings');
 
 export interface ITableRow {
@@ -21,28 +21,28 @@ export interface ITableRow {
 export class ListComponent {
     private audioList: Array<ITableRow>;
 
-    constructor(private _ngZone: NgZone) { }
+    constructor(private _element: ElementRef) { }
 
     setAudioList = (audioList: Array<ITableRow>) => {
-        this._ngZone.run(() => this.audioList = audioList);
+        this.audioList = audioList;
     }
 
     setRowError = (aid: number) => {
-        var row = $(stringUtils.format('#{0}.audioRow', aid));
+        var row = $(this._element.nativeElement).find(stringUtils.format('#{0}.audioRow', aid));
         row.removeClass('list-group-item-success');
         row.removeClass('list-group-item-warning');
         row.addClass('list-group-item-danger');
     }
 
     setRowSuccess = (aid: number) =>{
-        var row = $(stringUtils.format('#{0}.audioRow', aid));
+        var row = $(this._element.nativeElement).find(stringUtils.format('#{0}.audioRow', aid));
         row.removeClass('list-group-item-danger');
         row.removeClass('list-group-item-warning');
         row.addClass('list-group-item-success');
     }
 
     setRowWarning = (aid: number) => {
-        var row = $(stringUtils.format('#{0}.audioRow', aid));
+        var row = $(this._element.nativeElement).find(stringUtils.format('#{0}.audioRow', aid));
         row.addClass('list-group-item-warning');
     }
 }
