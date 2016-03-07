@@ -6,7 +6,8 @@ import {DownloadManager} from '../app_modules/download_manager';
 import {Mock, It, MockBehavior} from "typemoq";
 import 'zone.js';
 import 'reflect-metadata';
-import {Injector, Injectable, provide} from "angular2/core";
+import {Injector, Injectable, NgZone, provide} from "angular2/core";
+import {MockNgZone} from "angular2/testing";
 
 describe("controller", () => {
 
@@ -21,6 +22,7 @@ describe("controller", () => {
         vkApiMock = Mock.ofType(VkApi);
 
         container = Injector.resolveAndCreate([
+            provide(NgZone, { useValue: MockNgZone }),
             provide(ListDownloader, { useValue: listDownloaderMock.object }),
             provide(VkApi, { useValue: vkApiMock.object }),
             provide(DownloadManager, { useValue: downloadManagerMock.object }),
