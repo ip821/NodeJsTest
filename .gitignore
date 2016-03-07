@@ -1,6 +1,6 @@
 /services/*.map
 /services/*.js
-/test/*.js
+/spec/*.js
 /node_modules
 /services/strings.js
 /services/vkApi.js
@@ -8,9 +8,9 @@
 /app.js
 /services/appProxy.js
 /services/downloadManager.js
-/test/*.map
-/test/appInitTests.js
-/test/appProxyTests.js
+/spec/*.map
+/spec/appInitTests.js
+/spec/appProxyTests.js
 
 /components/appController.js
 /components/appController.js.map
@@ -24,7 +24,7 @@
 /components/view.js
 /services/download_manager.js
 /services/proxy.js
-/test/init_tests.js
-/test/proxy_tests.js
-/test/strings_tests.js
+/spec/init_tests.js
+/spec/proxy_tests.js
+/spec/strings_tests.js
 /boot.js
