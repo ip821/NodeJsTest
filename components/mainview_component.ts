@@ -28,12 +28,14 @@ import {Injectable, Component, AfterViewInit, Input, ViewChild, NgZone} from "an
 })
 export class MainViewComponent implements AfterViewInit, IListDownloaderEventHandler {
     audioList: IAudioListItem[] = null;
-    @ViewChild(HeaderComponent)
-    _header: HeaderComponent;
-    @ViewChild(ListComponent)
-    _list: ListComponent;
+    @ViewChild(HeaderComponent) _header: HeaderComponent;
+    @ViewChild(ListComponent) _list: ListComponent;
 
-    constructor(public downloader: ListDownloader, public vkApi: VkApi, private _ngZone: NgZone) {
+    constructor(
+        public downloader: ListDownloader, 
+        public vkApi: VkApi, 
+        private _ngZone: NgZone
+        ) {
     }
 
     ngAfterViewInit() {
@@ -66,8 +68,10 @@ export class MainViewComponent implements AfterViewInit, IListDownloaderEventHan
     }
 
     onViewSyncClick = () => {
-        this._ngZone.run(() => this._header.setRunningState(this.audioList.length));
-        this.downloader.startDownload(this.audioList);
+        this._ngZone.run(() => {
+            this._header.setRunningState(this.audioList.length);
+            this.downloader.startDownload(this.audioList);
+        });
     }
 
     onViewStopClick = () => {
