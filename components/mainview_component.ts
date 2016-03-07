@@ -1,8 +1,8 @@
 import _ = require('underscore');
-import stringUtils = require('../app_modules/strings');
-import {IAudioListItem, VkApi} from '../app_modules/vkapi';
-import {IListDownloaderEventHandler, ListDownloader} from "../app/list_downloader";
-import {DownloadManager, IDownloadManagerEventHandler} from '../app_modules/download_manager';
+import stringUtils = require('../services/strings');
+import {IAudioListItem, VkApi} from '../services/vkapi';
+import {IListDownloaderEventHandler, ListDownloader} from "../services/list_downloader";
+import {DownloadManager, IDownloadManagerEventHandler} from '../services/download_manager';
 import {ListComponent, RowStatus} from "./list_component";
 import {HeaderComponent} from "./header_component";
 import 'zone.js';
@@ -26,8 +26,7 @@ import {Injectable, Component, AfterViewInit, Input, ViewChild, NgZone} from "an
     </div>
   `
 })
-
-export class ControllerComponent implements AfterViewInit, IListDownloaderEventHandler {
+export class MainViewComponent implements AfterViewInit, IListDownloaderEventHandler {
     audioList: IAudioListItem[] = null;
     @ViewChild(HeaderComponent)
     _header: HeaderComponent;

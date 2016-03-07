@@ -1,8 +1,8 @@
 import pathExtra = require('path-extra');
 import fs = require('fs');
 import path = require('path');
-import proxy = require('../app_modules/proxy');
-import {DownloadManager, IDownloadManagerEventHandler} from '../app_modules/download_manager';
+import proxy = require('../services/proxy');
+import {DownloadManager, IDownloadManagerEventHandler} from '../services/download_manager';
 import 'zone.js';
 import 'reflect-metadata';
 import {Injectable, Component} from "angular2/core";

@@ -9,7 +9,7 @@
             "args": ["--debug_mode"],
             "cwd": ".",
             // next line is very important
-            "runtimeExecutable": "node_modules/.bin/electron",
+            "runtimeExecutable": "node_modules/.bin/electron.cmd",
             "runtimeArguments": [
                 ""
             ],

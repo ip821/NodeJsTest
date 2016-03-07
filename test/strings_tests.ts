@@ -1,5 +1,5 @@
 import assert = require('assert');
-import strings = require("../app_modules/strings");
+import strings = require("../services/strings");
 
 describe("strings", () => {
 

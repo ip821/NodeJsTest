@@ -1,8 +1,8 @@
 import assert = require('assert');
-import {ListDownloader} from "../app/list_downloader";
-import {ControllerComponent} from "../app/controller_component";
-import {VkApi, IAudioListItem} from '../app_modules/vkapi';
-import {DownloadManager} from '../app_modules/download_manager';
+import {ListDownloader} from "../services/list_downloader";
+import {MainViewComponent} from "../components/mainview_component";
+import {VkApi, IAudioListItem} from '../services/vkapi';
+import {DownloadManager} from '../services/download_manager';
 import {Mock, It, MockBehavior} from "typemoq";
 import 'zone.js';
 import 'reflect-metadata';
@@ -26,7 +26,7 @@ describe("controller", () => {
             provide(ListDownloader, { useValue: listDownloaderMock.object }),
             provide(VkApi, { useValue: vkApiMock.object }),
             provide(DownloadManager, { useValue: downloadManagerMock.object }),
-            ControllerComponent
+            MainViewComponent
         ]);
     });
 
@@ -34,7 +34,7 @@ describe("controller", () => {
         var isCalled = false;
         listDownloaderMock.setup(c => c.startDownload(It.isAny())).callback(() => isCalled = true);
 
-        var controller = container.get(ControllerComponent);
+        var controller = container.get(MainViewComponent);
         controller.audioList = [];
         controller.onViewSyncClick();
 
@@ -45,7 +45,7 @@ describe("controller", () => {
         var isCalled = false;
         listDownloaderMock.setup(c => c.stopDownload()).callback(() => isCalled = true);
 
-        var controller = container.get(ControllerComponent);
+        var controller = container.get(MainViewComponent);
         controller.audioList = [];
         controller.onViewStopClick();
 

@@ -1,5 +1,5 @@
 import {Injectable, Component, AfterViewInit, Input, Output, NgZone} from "angular2/core";
-import stringUtils = require('../app_modules/strings');
+import stringUtils = require('../services/strings');
 import $ = require('jquery');
 
 export interface ITableRow {
