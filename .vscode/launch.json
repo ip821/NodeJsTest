@@ -4,12 +4,12 @@
         {
             "name": "Launch Electron App",
             "type": "node",
-            "program": "boot.js", // important
+            "program": "${workspaceRoot}/boot.js", // important
             "stopOnEntry": false,
             "args": ["--debug_mode"],
-            "cwd": ".",
+            "cwd": "${workspaceRoot}",
             // next line is very important
-            "runtimeExecutable": "node_modules/.bin/electron.cmd",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
             "runtimeArguments": [
                 ""
             ],

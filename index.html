@@ -5,16 +5,19 @@
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
     <link rel="stylesheet" type="text/css" href="index.css">
-    <title>Vk audio sync</title>
-</head>
 
-<body>
     <script>
         window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.js');
     </script>
     <script src="./node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="./app.js"></script>
-    <!--<script src="./node_modules/angular2/bundles/angular2.js"></script>-->
+    <title>Vk audio sync</title>
+</head>
+
+<body>
     <div class="container">
         <app></app>
     </div>
