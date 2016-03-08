@@ -6,9 +6,9 @@ import {DownloadManager} from '../services/download_manager';
 import {Mock, It, MockBehavior} from "typemoq";
 import 'zone.js';
 import 'reflect-metadata';
-var jasmine = require('jasmine');
+import {Matchers} from "jasmine";
 import {Injector, Injectable, NgZone, provide} from "angular2/core";
-import {describe,expect,it,xit, inject, injectAsync, beforeEachProviders, MockNgZone, TestComponentBuilder, ComponentFixture} from 'angular2/testing';
+import {describe,expect,it,xit, inject, injectAsync, beforeEachProviders, MockNgZone, TestComponentBuilder, ComponentFixture, NgMatchers } from 'angular2/testing';
 
 describe("mainview", () => {
 
