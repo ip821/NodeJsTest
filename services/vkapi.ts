@@ -2,7 +2,9 @@ import $ = require('jquery');
 import _ = require('underscore');
 import 'zone.js';
 import 'reflect-metadata';
-import {Injectable} from "angular2/core";
+import {Injectable, Component} from "angular2/core";
+import {Http, Response} from 'angular2/http';
+import {Observable}     from 'rxjs/Observable';
 
 var strUrl = 'http://oauth.vk.com/authorize?client_id=4225742&scope=8&redirect_uri=http://oauth.vk.com/blank.html&display=wap&response_type=token';
 var strUrlApi = 'https://api.vk.com/method/';
@@ -16,6 +18,10 @@ export interface IAudioListItem {
 
 @Injectable()
 export class VkApi {
+    constructor(private http: Http) {
+
+    }
+
     openLoginWindow(parentWindow: Window, onClosedCallback: (userId: string, accessToken: string) => void) {
         var electron = require('electron');
         var loginWindow = new electron.remote.BrowserWindow({ height: 400, width: 300 });
@@ -54,12 +60,7 @@ export class VkApi {
         });
     }
 
-    private conevrtVkAudioList(audioList: any[]): IAudioListItem[] {
-        var result = _.map(audioList, t => { return { aid: t.aid, artist: t.artist, title: t.title, url: t.url } });
-        return result;
-    }
-
-    getAudioList(userId: string, accessToken: string, onSuccessCallback: (args: IAudioListItem[]) => void, onErrorCallback: (e: any) => void) {
+    getAudioList(userId: string, accessToken: string) {
         console.log('vkApi.getAudioList: userId=' + userId + 'accessToken=' + accessToken);
         var strUrl = strUrlApi + 'audio.get?' + $.param({
             uid: userId,
@@ -67,12 +68,10 @@ export class VkApi {
         })
         console.log("Request:");
         console.log(strUrl);
-        $.ajax({
-            type: 'GET',
-            url: strUrl,
-            data: {},
-            success: (e) => { onSuccessCallback(this.conevrtVkAudioList(e.response)); },
-            error: (e) => { onErrorCallback(e); }
-        })
+
+        return this.http
+            .get(strUrl)
+            .do(res => console.log(res.json().response))
+            .map(res => <IAudioListItem[]>res.json().response);
     }
 }

@@ -2,9 +2,10 @@
 import 'zone.js';
 import 'reflect-metadata';
 import {bootstrap} from 'angular2/platform/browser';
+import {HTTP_PROVIDERS} from 'angular2/http';
+import 'rxjs/Rx';
 import {MainViewComponent} from "./components/mainview_component";
-var ng2 = require("ng2-bootstrap");
 
 $(window.document).ready(() => {
-    bootstrap(MainViewComponent)
+    bootstrap(MainViewComponent, HTTP_PROVIDERS)
 });

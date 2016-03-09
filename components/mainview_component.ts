@@ -50,17 +50,17 @@ export class MainViewComponent implements AfterViewInit, IListDownloaderEventHan
     }
 
     private initAudioList(userId, accessToken) {
-        this.vkApi.getAudioList(
-            userId,
-            accessToken,
-            (audioList: IAudioListItem[]) => {
-                this.audioList = audioList;
+        this.vkApi
+        .getAudioList(userId, accessToken)
+        .subscribe(
+            data => {
+                this.audioList = data;
                 this._ngZone.run(() => {
-                    this._list.setAudioList(audioList);
-                    this._header.setCount(audioList.length);
+                    this._list.setAudioList(this.audioList);
+                    this._header.setCount(this.audioList.length);
                 });
             },
-            (e) => {
+            e => {
                 console.log("Error!");
                 console.log(e);
             }
