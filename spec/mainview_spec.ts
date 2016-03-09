@@ -1,3 +1,7 @@
+/// <reference path="../typings/jasmine/jasmine.d.ts" />
+/// <reference path="../node_modules/typemoq/typemoq.d.ts" />
+/// <reference path="../node_modules/typemoq/typemoq.node.d.ts" />
+
 import {ListDownloader} from "../services/list_downloader";
 import {MainViewComponent} from "../components/mainview_component";
 import {HeaderComponent} from "../components/header_component";
@@ -6,9 +10,8 @@ import {DownloadManager} from '../services/download_manager';
 import {Mock, It, MockBehavior} from "typemoq";
 import 'zone.js';
 import 'reflect-metadata';
-import {Matchers} from "jasmine";
 import {Injector, Injectable, NgZone, provide} from "angular2/core";
-import {describe,expect,it,xit, inject, injectAsync, beforeEachProviders, MockNgZone, TestComponentBuilder, ComponentFixture, NgMatchers } from 'angular2/testing';
+import {describe,expect,it,xit, inject, injectAsync, beforeEachProviders, MockNgZone, TestComponentBuilder, ComponentFixture } from 'angular2/testing';
 
 describe("mainview", () => {
 
