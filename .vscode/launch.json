@@ -9,7 +9,7 @@
             "args": ["--debug_mode"],
             "cwd": "${workspaceRoot}",
             // next line is very important
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd",
             "runtimeArguments": [
                 ""
             ],
